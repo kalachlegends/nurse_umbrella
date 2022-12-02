@@ -1,0 +1,21 @@
+@import "@/assets/scss/nullstyle.scss";
+@import "@/assets/scss/mixins/mixins.scss";
+@import "@/assets/scss/fonts.scss";
+@import "@/assets/scss/modificator.scss";
+@import "@/assets/scss/components.scss";
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+#app {
+    height: 100%;
+}
+a {
+    color: rgb(235, 235, 235);
+}
