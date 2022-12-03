@@ -13,7 +13,7 @@ defmodule Nurse.Tab do
   @doc false
   def changeset(tab, attrs) do
     tab
-    |> cast(attrs, [:words, :count])
-    |> validate_required([:words, :count])
+    |> cast(attrs, [:words, :count, :user_id])
+    |> validate_required([:words, :count, :user_id])
   end
 end
