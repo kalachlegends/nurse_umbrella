@@ -29,6 +29,11 @@ defmodule NurseWeb.Router do
   scope "/api/:version/", NurseWeb do
     pipe_through([:api])
 
+    scope "/tab" do
+      pipe_through(:auth)
+      get("/", TabController, :send_tabs)
+    end
+    
     scope "/snippets" do
       pipe_through(:auth)
       get("/", PageController, :get_snippets)
