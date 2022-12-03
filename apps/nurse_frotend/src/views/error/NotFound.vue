@@ -1,6 +1,6 @@
 <template lang="">
     <div class="page_err">
-        <img src="@/assets/img/logo.svg" alt="">
+        <a href="/"><img src="@/assets/img/logo.svg" alt=""></a>
         <h1>404 NOT FOUND </h1>
         <a class="black-text tdu" href="/">На главную</a>
     </div>
@@ -16,7 +16,7 @@ export default {};
     flex-direction: column;
     padding-top: 20%;
     img {
-        width: 5%;
+        width: 100%;
     }
 }
 </style>

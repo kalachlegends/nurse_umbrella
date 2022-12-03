@@ -38,7 +38,7 @@ export default {
     const user = JSON.parse(localStorage.getItem("user"));
     const routes = [
       {
-        to: "/login",
+        to: "/",
         title: "Главная",
         description:
           "Сервис по созданию документов",
