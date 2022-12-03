@@ -282,6 +282,10 @@
     }
 }
 
+.black-text{
+    color: #000425;
+}
+
 .btn-grey {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
     border-radius: 7px;
@@ -289,7 +293,8 @@
     width: 100%;
     font-weight: 600;
     @include adaptiv-font(18, 14);
-    background-color: white;
+    background-color: #008F7B;
+    color: #fff;
 }
 
 .gap-10 {

@@ -29,14 +29,14 @@ export const useLogin = () => {
 
                     Toast.fire({
                         icon: 'success',
-                        title: 'YOU AUTH'
+                        title: 'Вы вошли'
                     })
                     router.push("/")
                 })
                 .catch((err) => {
                     Toast.fire({
                         icon: 'error',
-                        title: 'Login or Password not valid'
+                        title: 'Неправильный логин или пароль'
                     })
                 })
         isLoad.value = false
