@@ -5,9 +5,13 @@
     <div class="profile__img-rounted">
       <img class="profile__img img-fluid" src="{{user.data.img}}" alt="">
     </div>
-    <p class="profile__name">Имя Фамилия</p>
-    <p class="profile__text">Ваш логин&nbsp;<div class="profile__text-fw">{{user.login}}</div></p>
-    <p class="profile__text">Ваш email&nbsp;<div class="profile__text-fw">{{user.email}}</div></p>
+    <p class="profile__name">{{user.data.name}}</p>
+    <p class="profile__text">Ваш логин&nbsp;
+    <div class="profile__text-fw">{{user.login}}</div>
+    </p>
+    <p class="profile__text">Ваш email&nbsp;
+    <div class="profile__text-fw">{{user.email}}</div>
+    </p>
   </div>
 
 
@@ -61,7 +65,8 @@
     &__text {
       display: flex;
       font-size: 18px;
-      &-fw{
+
+      &-fw {
         font-weight: 700;
       }
     }
