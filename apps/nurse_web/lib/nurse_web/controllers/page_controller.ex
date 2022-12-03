@@ -13,7 +13,13 @@ defmodule NurseWeb.PageController do
   def receive_doc(%{assigns: assigns}, params) do
     IO.inspect(params)
     IO.inspect(assigns)
-    Nurse.Doc.add(%{title: params["title"], user_id: assigns.user_id, doc: Map.drop(params, ["version", "title"])})
+
+    Nurse.Doc.add(%{
+      title: params["title"],
+      user_id: assigns.user_id,
+      doc: Map.drop(params, ["version", "title"])
+    })
+
     {:render,
      %{
        data: [
@@ -21,7 +27,8 @@ defmodule NurseWeb.PageController do
          %{name: "bowling", change: "balls", selected: false}
        ],
        anemesis: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["anemesis"], ""),
-       object_data: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"], ""),
+       object_data:
+         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"], ""),
        exam: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["exam"], "")
      }}
   end
@@ -34,7 +41,7 @@ defmodule NurseWeb.PageController do
 
   def list_doc(%{assigns: assigns}, _params) do
     with {:ok, data} <- Nurse.Doc.get_all(user_id: assigns.user_id) do
-      {:render, %{data: Enum.map(data, &(Map.put(&1.doc, :title, &1.title)))}}
+      {:render, %{data: Enum.map(data, &Map.put(&1.doc, :title, &1.title))}}
     end
   end
 
@@ -46,6 +53,19 @@ defmodule NurseWeb.PageController do
          %{name: "bowling", change: "balls", selected: false}
        ]
      }}
+  end
+
+  def get_snippets(%{assigns: assigns}, _params) do
+    with {:ok, snippets} <- Nurse.Snippet.get_all(%{user_id: assigns.user_id}),
+         list <- Enum.map(snippets, &%{name: &1.name, change: &1.words}) do
+      {:render, %{snippets: list}}
+    end
+  end
+
+  def insert_snippet(%{assigns: assigns}, params) do
+    with {:ok, struct} <- Nurse.Snippet.add(%{name: params["name"], words: params["change"], count: 1, user_id: assigns.user_id}) do
+      {:render, %{data: struct}}
+    end
   end
 
   # def test(conn, params) do

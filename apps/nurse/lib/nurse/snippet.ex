@@ -5,6 +5,7 @@ defmodule Nurse.Snippet do
   schema "snippets" do
     field :count, :integer
     field :words, :string
+    field :name, :string
     field :user_id, :id
   end
 
@@ -13,7 +14,7 @@ defmodule Nurse.Snippet do
   @doc false
   def changeset(snippet, attrs) do
     snippet
-    |> cast(attrs, [:words, :count])
-    |> validate_required([:words, :count])
+    |> cast(attrs, [:words, :count, :user_id, :name])
+    |> validate_required([:words, :count, :user_id, :name])
   end
 end

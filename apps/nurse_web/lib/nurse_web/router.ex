@@ -29,13 +29,18 @@ defmodule NurseWeb.Router do
   scope "/api/:version/", NurseWeb do
     pipe_through([:api])
 
+    scope "/snippets" do
+      pipe_through(:auth)
+      get("/", PageController, :get_snippets)
+      post("/", PageController, :insert_snippet)
+    end
+
     scope "/doc" do
       pipe_through(:auth)
       post("/", PageController, :receive_doc)
       get("/:id", PageController, :send_doc)
       get("/", PageController, :list_doc)
     end
-
 
     scope "/auth" do
       post("/register", UserController, :register)
