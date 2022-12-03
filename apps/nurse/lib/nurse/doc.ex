@@ -10,6 +10,8 @@ defmodule Nurse.Doc do
     timestamps()
   end
 
+  use Nurse.Use.RepoBase, repo: Nurse.Repo
+
   @doc false
   def changeset(doc, attrs) do
     doc

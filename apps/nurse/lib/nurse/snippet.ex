@@ -10,6 +10,8 @@ defmodule Nurse.Snippet do
     timestamps()
   end
 
+  use Nurse.Use.RepoBase, repo: Nurse.Repo
+  
   @doc false
   def changeset(snippet, attrs) do
     snippet
