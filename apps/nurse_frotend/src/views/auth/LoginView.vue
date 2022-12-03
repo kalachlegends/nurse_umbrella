@@ -7,7 +7,7 @@
             <div class="logo-vertical__image img-fluid">
                 <img src="@/assets/img/logo.svg" alt="">
             </div>
-            <span class="black-text">Nurse Documents</span>
+            <span class="black-text">AnamnesisDoc</span>
         </a>
 
             <form class="login-block__body">
@@ -89,9 +89,9 @@ export default {
     @include adaptiv-font(40, 24);
   }
   &__image {
-    width: 58%;
+    width: 50%;
     position: relative;
-    padding: 0px 0 60% 0;
+    padding: 0px 0 50% 0;
   }
 }
 </style>

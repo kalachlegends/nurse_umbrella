@@ -1,7 +1,7 @@
 <template lang="">
 <Transition>
     <div class="page" v-if="isLoad">
-        <img ref="muha" class="muha" src="@/assets/img/icons/muha.svg"/>
+      
       <loader class="govno" theme="dark" />
     </div>
 </Transition>

@@ -17,7 +17,6 @@
         title="Выйти"
         urlImage="img/icons/logout.svg"
         description="Выйти из своего профиля"
- 
          />
     </wrap-list-menu>
    </wrap-menu>
@@ -53,6 +52,12 @@ export default {
       {
         to: "/",
         title: "Создать документ",
+        description: "Создавайте документ",
+        urlImage: "img/nurse/docAdd.svg",
+      },
+      {
+        to: "/",
+        title: "Создать подсказку",
         description: "создавайте краткую запись длинного текста",
         urlImage: "img/nurse/doc.svg",
       },
@@ -65,14 +70,14 @@ export default {
 
       {
         to: "/",
-        title: "Создать подсказку",
-        description: "создавайте переиспользуемый шаблон",
+        title: "Создать шаблон",
+        description: "Создавайте переиспользуемый шаблон",
         urlImage: "img/nurse/template.svg",
       },
       {
         to: "/",
-        title: "Создать шаблон",
-        description: "просматривайте созданные документы",
+        title: "Созданное",
+        description: "Просматривайте всё, что было создано",
         urlImage: "img/nurse/view.svg",
       },
     ];
