@@ -32,9 +32,8 @@ defmodule NurseWeb.Router do
     scope "/doc" do
       pipe_through(:auth)
       post("/", PageController, :receive_doc)
-      patch("/", PageController, :receive_doc)
       get("/:id", PageController, :send_doc)
-      get("/", PageController, :find_doc)
+      get("/", PageController, :list_doc)
     end
 
 

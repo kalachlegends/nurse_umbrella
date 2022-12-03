@@ -15,7 +15,7 @@ defmodule Nurse.Doc do
   @doc false
   def changeset(doc, attrs) do
     doc
-    |> cast(attrs, [:title, :doc])
-    |> validate_required([:title, :doc])
+    |> cast(attrs, [:title, :doc, :user_id])
+    |> validate_required([:title, :doc, :user_id])
   end
 end
