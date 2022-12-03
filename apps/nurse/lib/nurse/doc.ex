@@ -5,6 +5,7 @@ defmodule Nurse.Doc do
   schema "docs" do
     field :doc, :map
     field :title, :string
+    field :is_template, :boolean
     field :user_id, :id
 
     timestamps()
@@ -15,7 +16,7 @@ defmodule Nurse.Doc do
   @doc false
   def changeset(doc, attrs) do
     doc
-    |> cast(attrs, [:title, :doc, :user_id])
-    |> validate_required([:title, :doc, :user_id])
+    |> cast(attrs, [:title, :doc, :user_id, :is_template])
+    |> validate_required([:title, :doc, :user_id, :is_template])
   end
 end

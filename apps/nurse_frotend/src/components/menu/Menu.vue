@@ -38,17 +38,15 @@ export default {
     const user = JSON.parse(localStorage.getItem("user"));
     const routes = [
       {
-        to: "/login",
+        to: "/",
         title: "Главная",
-        description:
-          "Сервис по созданию документов",
+        description: "Сервис по созданию документов",
         urlImage: "img/logo.svg",
       },
       {
         to: "/profile/" + user.login,
         title: "Профиль",
-        description:
-          "Ваш профиль с данными",
+        description: "создавайте документ",
         urlImage: "img/nurse/profile.svg",
       },
       {
@@ -70,7 +68,7 @@ export default {
         urlImage: "img/nurse/template.svg",
       },
       {
-        to: "/",
+        to: "/docs",
         title: "Созданное",
         description: "Просматривайте всё, что было создано",
         urlImage: "img/nurse/view.svg",

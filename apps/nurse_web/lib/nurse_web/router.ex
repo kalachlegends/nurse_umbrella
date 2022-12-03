@@ -42,6 +42,13 @@ defmodule NurseWeb.Router do
       get("/", PageController, :list_doc)
     end
 
+    scope "/template" do
+      pipe_through(:auth)
+      post("/", PageController, :receive_temp)
+      get("/:id", PageController, :send_temp)
+      get("/", PageController, :list_temp)
+    end
+    
     scope "/auth" do
       post("/register", UserController, :register)
       post("/login", UserController, :login)
