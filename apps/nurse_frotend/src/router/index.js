@@ -38,6 +38,24 @@ const routes = [
     },
   },
   {
+    path: '/docs',
+    name: 'docs',
+    component: () => import('@/views/docs/DocsView.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+  {
+    path: '/docs/:id',
+    name: 'docs_id',
+    component: () => import('@/views/docs/DocsViewId.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+  {
     path: '/editor',
     name: 'editor',
     component: () => import('@/views/EditorView.vue'),
