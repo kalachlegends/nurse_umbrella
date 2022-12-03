@@ -6,16 +6,14 @@ defmodule Nurse.Tab do
     field :count, :integer
     field :words, :string
     field :user_id, :id
-
-    timestamps()
   end
 
   use Nurse.Use.RepoBase, repo: Nurse.Repo
-  
+
   @doc false
   def changeset(tab, attrs) do
     tab
-    |> cast(attrs, [:words, :count])
-    |> validate_required([:words, :count])
+    |> cast(attrs, [:words, :count, :user_id])
+    |> validate_required([:words, :count, :user_id])
   end
 end
