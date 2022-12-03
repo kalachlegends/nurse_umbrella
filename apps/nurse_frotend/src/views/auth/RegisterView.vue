@@ -7,6 +7,7 @@
                 <div class="logo-vertical__image img-fluid">
                     <img src="@/assets/img/logo.svg" alt="">
                 </div>
+                
                 <span class="black-text">AnamnesisDoc</span>
             </a>
     
