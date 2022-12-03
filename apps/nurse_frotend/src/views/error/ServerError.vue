@@ -6,17 +6,18 @@
     </div>
 </template>
 <script>
-export default {};
+    export default {};
 </script>
 <style lang="scss">
-.page_err{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 20%;
-    img {
-        width: 100%;
+    .page_err {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 20%;
+
+        img {
+            width: 100%;
+        }
     }
-}
 </style>

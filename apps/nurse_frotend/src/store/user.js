@@ -7,7 +7,8 @@ export default {
         user: {
             login: "",
             data: {
-                name: ""
+                name: "",
+                img: ""
             }
         }
     },
