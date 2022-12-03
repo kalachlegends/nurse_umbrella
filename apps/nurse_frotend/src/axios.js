@@ -13,6 +13,9 @@ instance.interceptors.response.use((response) => {
     if (error.response.status == 401) {
         window.location.pathname = "/login"
     }
+    if (error.response.status == 500) {
+        window.location.pathname = "/server_error"
+    }
     return Promise.reject(error);
 }
 )

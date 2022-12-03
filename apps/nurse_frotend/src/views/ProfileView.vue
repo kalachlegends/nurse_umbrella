@@ -1,20 +1,19 @@
-<template lang="">
-  <!-- {{user.login}}
-{{user.id}} -->
+<template>
   <div class="profile">
     <div class="profile__img-rounted">
       <img class="profile__img img-fluid" src="{{user.data.img}}" alt="">
     </div>
     <p class="profile__name">{{user.data.name}}</p>
-    <p class="profile__text">Ваш логин&nbsp;
-    <div class="profile__text-fw">{{user.login}}</div>
-    </p>
-    <p class="profile__text">Ваш email&nbsp;
-    <div class="profile__text-fw">{{user.email}}</div>
-    </p>
+    <div class="profile__text">Ваш логин&nbsp;
+      <p class="profile__text-fw">{{user.login}}</p>
+    </div>
+    <div class="profile__text">Ваш email&nbsp;
+      <p class="profile__text-fw">{{user.email}}</p>
+    </div>
   </div>
-
-
+  <div class="content">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam debitis veritatis rem vero harum alias! In modi voluptate dolorum excepturi nostrum dicta eum dignissimos amet vel ad dolor sapiente sunt suscipit nihil quam inventore, consectetur quidem animi sed quisquam fugiat molestiae eos possimus? Minus, vero totam velit iure necessitatibus recusandae sit ea. Ipsa eveniet ut qui doloribus fugiat repudiandae ex excepturi corporis inventore officiis recusandae voluptate, optio, animi natus nihil similique. Esse voluptate harum eum neque ut. Quam repellat porro commodi, dolore cum ea, labore recusandae laborum totam odit, illo eligendi obcaecati ducimus? Rem odio cupiditate eius molestiae illum aspernatur.
+  </div>
 </template>
 <script>
   import { useGetProfile } from "@/hooks/user/useGetProfile";
@@ -28,9 +27,13 @@
     },
   };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   @import "@/assets/scss/colors.scss";
 
+  p{
+    margin: 0;
+    padding: 0;
+  }
   .profile {
     display: flex;
     justify-content: center;
@@ -70,5 +73,12 @@
         font-weight: 700;
       }
     }
+  }
+
+  .content{
+    margin: 20px 0 0 0;
+    width: 100%;
+    color: #fff;
+    background-color: $black;
   }
 </style>
