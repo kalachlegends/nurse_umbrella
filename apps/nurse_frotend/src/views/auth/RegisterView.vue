@@ -13,7 +13,7 @@
     
                 <form class="login-block__body">
         
-                  <loader v-if="isLoad" :sx="{alignSelf: 'center'}" />
+                  <loader v-if="isLoad" theme="dark" :sx="{alignSelf: 'center'}" />
                   <input-image v-model="dataForm.email" :placeholder="'Email'"  urlImage="img/icons/baseline-email.svg" :error="getKeyError(errors.errors, 'email')" />
                   <input-image v-model="dataForm.data.name" :placeholder="'Имя Фамилия'"  urlImage="img/icons/user.svg" />
                   <input-image v-model="dataForm.login"  :placeholder="'Логин'" urlImage="img/icons/user.svg" :error="getKeyError(errors.errors, 'login')" />

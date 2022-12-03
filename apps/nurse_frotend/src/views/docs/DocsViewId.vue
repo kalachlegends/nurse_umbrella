@@ -14,50 +14,50 @@
     <p v-if="doc.survey"><h3>Обследование</h3> {{doc.survey}}</p>
     <p v-if="doc.plan"><h3>План лечения</h3> {{doc.plan}}</p>
     <p v-if="doc.etc"><h3>Прочее</h3> {{doc.etc}}</p>
-    <p>Врач: {{doc.title}}</p>
+    <p><b>Врач: </b>{{doc.doctor}}</p>
   </div>
 </template>
 <script>
-  import axios from "@/axios";
-  import { ref, onMounted, computed, inject } from "vue";
-  import { useRouter, useRoute } from "vue-router";
-  export default {
-    setup() {
-      const doc = ref({});
-      const isLoad = inject("isLoad");
-      onMounted(async () => {
-        isLoad.value = true;
-        const route = useRoute();
-        const data = await axios.get("/doc/" + route.params.id);
-        doc.value = data.data.data;
+import axios from "@/axios";
+import { ref, onMounted, computed, inject } from "vue";
+import { useRouter, useRoute } from "vue-router";
+export default {
+  setup() {
+    const doc = ref({});
+    const isLoad = inject("isLoad");
+    onMounted(async () => {
+      isLoad.value = true;
+      const route = useRoute();
+      const data = await axios.get("/doc/" + route.params.id);
+      doc.value = data.data.data;
 
-        isLoad.value = false;
-      });
-      return {
-        doc,
-      };
-    },
-  };
+      isLoad.value = false;
+    });
+    return {
+      doc,
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
-  @import "@/assets/scss/colors.scss";
+@import "@/assets/scss/colors.scss";
 
-  .doc {
-    width: 100%;
-    height: auto;
-    background-color: #fff;
-    border: 1px solid $black;
-    padding: 20px 30px;
-    font-size: 16px;
+.doc {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid $black;
+  padding: 20px 30px;
+  font-size: 16px;
+}
+h3 {
+  text-align: center;
+}
+.date {
+  display: flex;
+  justify-content: space-between;
+  i {
+    font-size: 18px;
   }
-  h3{
-    text-align: center;
-  }
-  .date{
-    display: flex;
-    justify-content: space-between;
-    i{
-      font-size: 18px;
-    }
-  }
+}
 </style>
