@@ -6,8 +6,6 @@ defmodule Nurse.Word do
     field :count, :integer
     field :word, :string
     field :user_id, :id
-
-    timestamps()
   end
 
   use Nurse.Use.RepoBase, repo: Nurse.Repo
