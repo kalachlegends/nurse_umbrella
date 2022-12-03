@@ -40,14 +40,14 @@ export default {
       {
         to: "/",
         title: "Главная",
-        description: "Сервис по созданию документов",
+        description: "",
         urlImage: "img/logo.svg",
       },
       {
         to: "/profile/" + user.login,
         title: "Профиль",
         description: "создавайте документ",
-        urlImage: "img/nurse/docAdd.svg",
+        urlImage: "img/nurse/profile.svg",
       },
       {
         to: "/",
@@ -76,7 +76,7 @@ export default {
       },
 
       {
-        to: "/",
+        to: "/docs",
         title: "Созданное",
         description: "Просматривайте всё, что было создано",
         urlImage: "img/nurse/view.svg",

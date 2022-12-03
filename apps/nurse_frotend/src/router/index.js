@@ -104,6 +104,10 @@ const routes = [
   {
     name: "404",
     path: '/:pathMatch(.*)*', component: NotFound
+  },
+  {
+    name: "500",
+    path: '/server_error', component: import('@/views/error/ServerError.vue')
   }
 ]
 

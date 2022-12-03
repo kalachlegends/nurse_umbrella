@@ -29,6 +29,17 @@ defmodule NurseWeb.Router do
   scope "/api/:version/", NurseWeb do
     pipe_through([:api])
 
+    scope "/tab" do
+      pipe_through(:auth)
+      get("/", TabController, :send_tabs)
+    end
+    
+    scope "/snippets" do
+      pipe_through(:auth)
+      get("/", PageController, :get_snippets)
+      post("/", PageController, :insert_snippet)
+    end
+
     scope "/doc" do
       pipe_through(:auth)
       post("/", PageController, :receive_doc)
@@ -36,7 +47,13 @@ defmodule NurseWeb.Router do
       get("/", PageController, :list_doc)
     end
 
-
+    scope "/template" do
+      pipe_through(:auth)
+      post("/", PageController, :receive_temp)
+      get("/:id", PageController, :send_temp)
+      get("/", PageController, :list_temp)
+    end
+    
     scope "/auth" do
       post("/register", UserController, :register)
       post("/login", UserController, :login)
