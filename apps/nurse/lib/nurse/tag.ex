@@ -5,8 +5,6 @@ defmodule Nurse.Tag do
   schema "tag" do
     field :name, :string
     field :user_id, :id
-
-    timestamps()
   end
 
   use Nurse.Use.RepoBase, repo: Nurse.Repo

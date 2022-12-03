@@ -6,12 +6,10 @@ defmodule Nurse.Snippet do
     field :count, :integer
     field :words, :string
     field :user_id, :id
-
-    timestamps()
   end
 
   use Nurse.Use.RepoBase, repo: Nurse.Repo
-  
+
   @doc false
   def changeset(snippet, attrs) do
     snippet

@@ -13,6 +13,7 @@ defmodule NurseWeb.PageController do
   def receive_doc(%{assigns: assigns}, params) do
     IO.inspect(params)
     IO.inspect(assigns)
+    Nurse.Doc.add(%{title: params["title"], user_id: assigns.user_id, doc: Map.drop(params, ["version", "title"])})
     {:render,
      %{
        data: [
@@ -26,12 +27,15 @@ defmodule NurseWeb.PageController do
   end
 
   def send_doc(%{assigns: assigns}, %{"id" => id}) do
-    IO.inspect(assigns)
-    {:render, %{data: Nurse.Doc.get(id)}}
+    with {:ok, map} <- Nurse.Doc.get(id: id, user_id: assigns.user_id) do
+      {:render, %{data: Map.put(map.doc, :title, map.title)}}
+    end
   end
 
-  def find_doc(_conn, %{"sample" => sample}) do
-    {:render, %{data: Nurse.Doc.find(sample)}}
+  def list_doc(%{assigns: assigns}, _params) do
+    with {:ok, data} <- Nurse.Doc.get_all(user_id: assigns.user_id) do
+      {:render, %{data: Enum.map(data, &(Map.put(&1.doc, :title, &1.title)))}}
+    end
   end
 
   def send_autocomp(_conn, _params) do
