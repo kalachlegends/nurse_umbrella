@@ -10,13 +10,13 @@
     @keydown="handleKey"
   >
   </textarea>
-
-  
 </template>
   
   <script>
 import { is } from "@babel/types";
+import axios from "@/axios";
 import { ref } from "@vue/reactivity";
+import { inject } from "vue";
 import { onMounted } from "@vue/runtime-core";
 export default {
   setup() {
@@ -26,7 +26,20 @@ export default {
     const lastElement = ref("");
     const isTab = ref(false);
     const number = ref(0);
-    const arrayHints = [];
+    const doc = ref({});
+    const isLoad = inject("isLoad");
+    let arrayHints = [];
+    onMounted(async () => {
+      isLoad.value = true;
+
+      const data = await axios.get("/tab");
+      console.log(data);
+      doc.value = data.data.data;
+
+      isLoad.value = false;
+      arrayHints = doc.value;
+    });
+
     const find = (el) => el.find((el) => el.selected);
     const handleChange = (event) => {
       textArea.value = event.target.value;

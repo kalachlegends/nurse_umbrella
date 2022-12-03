@@ -55,6 +55,35 @@ const routes = [
       layout: "AppLayoutMenu"
     },
   },
+
+  {
+    path: '/template/:id',
+    name: 'template',
+    component: () => import('@/views/templates/TemplateViewId.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+  {
+    path: '/template',
+    name: 'template_id',
+    component: () => import('@/views/templates/TemplateView.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+
+  {
+    path: '/snippets',
+    name: 'snippets',
+    component: () => import('@/views/templates/TemplateView.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
   {
     path: '/editor',
     name: 'editor',

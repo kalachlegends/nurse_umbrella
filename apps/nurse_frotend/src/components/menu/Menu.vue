@@ -62,11 +62,19 @@ export default {
         urlImage: "img/nurse/doc.svg",
       },
       {
-        to: "/",
+        to: "/docs",
+        title: "Документы",
+        description: "Посмотреть документы",
+        urlImage: "img/nurse/template.svg",
+      },
+
+      {
+        to: "/template",
         title: "Создать шаблон",
         description: "Создавайте переиспользуемый шаблон",
         urlImage: "img/nurse/template.svg",
       },
+
       {
         to: "/docs",
         title: "Созданное",
