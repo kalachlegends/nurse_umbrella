@@ -40,7 +40,7 @@ export default {
       {
         to: "/",
         title: "Главная",
-        description: "Сервис по созданию документов",
+        description: "",
         urlImage: "img/logo.svg",
       },
       {
