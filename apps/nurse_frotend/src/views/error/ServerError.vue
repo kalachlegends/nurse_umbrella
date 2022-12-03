@@ -1,7 +1,7 @@
 <template lang="">
     <div class="page_err">
         <a href="/"><img src="@/assets/img/logo.svg" alt=""></a>
-        <h1>404 NOT FOUND </h1>
+        <h1>500 </h1>
         <router-link class="black-text tdu" to="/">На главную</router-link>
     </div>
 </template>
