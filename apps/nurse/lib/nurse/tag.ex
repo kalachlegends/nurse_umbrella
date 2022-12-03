@@ -9,6 +9,8 @@ defmodule Nurse.Tag do
     timestamps()
   end
 
+  use Nurse.Use.RepoBase, repo: Nurse.Repo
+
   @doc false
   def changeset(tag, attrs) do
     tag
