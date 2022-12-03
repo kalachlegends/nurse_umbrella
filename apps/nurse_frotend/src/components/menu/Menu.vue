@@ -47,7 +47,7 @@ export default {
         to: "/profile/" + user.login,
         title: "Профиль",
         description: "создавайте документ",
-        urlImage: "img/nurse/docAdd.svg",
+        urlImage: "img/nurse/profile.svg",
       },
       {
         to: "/",
@@ -62,20 +62,13 @@ export default {
         urlImage: "img/nurse/doc.svg",
       },
       {
-        to: "/docs",
-        title: "Документы",
-        description: "Посмотреть документы",
-        urlImage: "img/nurse/template.svg",
-      },
-
-      {
         to: "/",
         title: "Создать шаблон",
         description: "Создавайте переиспользуемый шаблон",
         urlImage: "img/nurse/template.svg",
       },
       {
-        to: "/",
+        to: "/docs",
         title: "Созданное",
         description: "Просматривайте всё, что было создано",
         urlImage: "img/nurse/view.svg",

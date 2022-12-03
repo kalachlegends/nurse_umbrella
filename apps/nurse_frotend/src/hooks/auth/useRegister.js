@@ -10,6 +10,9 @@ export const useRegister = () => {
         login: "",
         password: "",
         repassword: "",
+        data: {
+            name: ""
+        }
     })
 
     const isLoad = ref(false)
@@ -19,7 +22,7 @@ export const useRegister = () => {
         login: yup.string().required(),
         email: yup.string().required().email(),
         password: yup.string().required(),
-        repassword: yup.string().required().oneOf([yup.ref('password'), null], 'Passwords must match'),
+        repassword: yup.string().required().oneOf([yup.ref('password'), null], 'Passwords must match')
     });
     const { errors, validate, getKeyError } = useValidate(schema, dataForm.value)
     const handleClickRegister = async () => {

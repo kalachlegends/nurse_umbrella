@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-        <h1>docs</h1> 
+        <h1>Документы</h1> 
      <a-table :dataSource="doc" :columns="columns"> 
         <template #bodyCell="{ column, record }">
             <template v-if="column.key === 'id'">
@@ -33,12 +33,12 @@ export default {
         key: "id",
       },
       {
-        title: "title",
+        title: "Название",
         dataIndex: "title",
         key: "title",
       },
       {
-        title: "name",
+        title: "Имя пациента",
         dataIndex: "name",
         key: "name",
       },

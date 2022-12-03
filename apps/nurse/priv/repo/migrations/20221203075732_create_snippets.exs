@@ -4,7 +4,7 @@ defmodule Nurse.Repo.Migrations.CreateSnippets do
   def change do
     create table(:snippets) do
       add :words, :string
-      add :count, :integer
+      add :count, :integer, default: 0
       add :user_id, references(:user, on_delete: :nothing)
     end
 
