@@ -41,15 +41,13 @@ export default {
       {
         to: "/",
         title: "Главная",
-        description:
-          "Сервис по созданию документов",
+        description: "Сервис по созданию документов",
         urlImage: "img/logo.svg",
       },
       {
         to: "/profile/" + user.login,
         title: "Профиль",
-        description:
-          "создавайте документ",
+        description: "создавайте документ",
         urlImage: "img/nurse/docAdd.svg",
       },
       {
@@ -58,6 +56,13 @@ export default {
         description: "создавайте краткую запись длинного текста",
         urlImage: "img/nurse/doc.svg",
       },
+      {
+        to: "/docs",
+        title: "Документы",
+        description: "Посмотреть документы",
+        urlImage: "img/nurse/template.svg",
+      },
+
       {
         to: "/",
         title: "Создать подсказку",
