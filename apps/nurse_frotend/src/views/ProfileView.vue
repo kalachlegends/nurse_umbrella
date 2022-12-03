@@ -2,6 +2,7 @@
 {{user.login}}
 {{user.id}}
 
+
 </template>
 <script>
 import { useGetProfile } from "@/hooks/user/useGetProfile";

@@ -7,7 +7,8 @@
                 <div class="logo-vertical__image img-fluid">
                     <img src="@/assets/img/logo.svg" alt="">
                 </div>
-                <span>Novella Designer</span>
+                
+                <span class="black-text">AnamnesisDoc</span>
             </a>
     
                 <form class="login-block__body">
@@ -22,13 +23,13 @@
                         Войти
                     </button>
                     <div class="df-aic-jc-fx-c gap-10">
-                        <router-link to="/login" class="text-align-center width-80">У вас уже есть аккаунт? Тогда войдите!</router-link>
+                        <router-link to="/login" class="text-align-center width-80 black-text">У вас уже есть аккаунт? Тогда войдите!</router-link>
                     </div>
                 </form>
             </div> 
     </div>
     </template>
-    <script>
+<script>
 import { ref } from "vue";
 import { useRegister } from "@/hooks/auth/useRegister";
 export default {
@@ -46,7 +47,7 @@ export default {
   },
 };
 </script>
-    <style lang="scss" scoped>
+<style lang="scss" scoped>
 @import "@/assets/scss/mixins/mixins.scss";
 .main-clean {
   width: 100%;
@@ -54,7 +55,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #2c2c2c;
+  background-color: #f3f3f3;
 }
 
 .login-block {

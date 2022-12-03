@@ -1,11 +1,22 @@
 <template lang="">
-    <div>
+    <div class="page_err">
+        <img src="@/assets/img/logo.svg" alt="">
         <h1>404 NOT FOUND </h1>
-        <a href="/">Home</a>
+        <a class="black-text tdu" href="/">На главную</a>
     </div>
 </template>
 <script>
 export default {};
 </script>
-<style lang="">
+<style lang="scss">
+.page_err{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 20%;
+    img {
+        width: 5%;
+    }
+}
 </style>

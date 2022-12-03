@@ -17,7 +17,6 @@
         title="Выйти"
         urlImage="img/icons/logout.svg"
         description="Выйти из своего профиля"
- 
          />
     </wrap-list-menu>
    </wrap-menu>
@@ -39,17 +38,42 @@ export default {
     const user = JSON.parse(localStorage.getItem("user"));
     const routes = [
       {
+        to: "/login",
+        title: "Главная",
+        description:
+          "Сервис по созданию документов",
+        urlImage: "img/logo.svg",
+      },
+      {
         to: "/profile/" + user.login,
         title: "Профиль",
         description:
-          "Ваша страничка профиля тут вы можете просматривать свой профиль",
-        urlImage: "img/icons/profile.svg",
+          "Ваш профиль с данными",
+        urlImage: "img/nurse/profile.svg",
       },
       {
-        to: "/editor",
-        title: "Создание новел",
-        description: "Здесь вы можете создать свою новеллу",
-        urlImage: "img/icons/edit-box.svg",
+        to: "/",
+        title: "Создать документ",
+        description: "Создавайте документ",
+        urlImage: "img/nurse/docAdd.svg",
+      },
+      {
+        to: "/",
+        title: "Создать подсказку",
+        description: "создавайте краткую запись длинного текста",
+        urlImage: "img/nurse/doc.svg",
+      },
+      {
+        to: "/",
+        title: "Создать шаблон",
+        description: "Создавайте переиспользуемый шаблон",
+        urlImage: "img/nurse/template.svg",
+      },
+      {
+        to: "/",
+        title: "Созданное",
+        description: "Просматривайте всё, что было создано",
+        urlImage: "img/nurse/view.svg",
       },
     ];
     return {

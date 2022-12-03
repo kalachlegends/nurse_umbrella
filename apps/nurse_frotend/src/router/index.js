@@ -43,6 +43,7 @@ const routes = [
     component: () => import('@/views/EditorView.vue'),
     meta: {
       requiresAuth: true,
+      layout: "AppLayoutMenu"
     },
   },
   {
