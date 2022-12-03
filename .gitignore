@@ -28,3 +28,5 @@ erl_crash.dump
 /apps/nurse_web/priv/static/uploads/*
 /apps/nurse_web/priv/app/*
 /apps/nv-design-frotend/*
+
+package-lock.json
