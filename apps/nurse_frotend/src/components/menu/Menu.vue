@@ -49,25 +49,31 @@ export default {
         to: "/profile/" + user.login,
         title: "Профиль",
         description:
-          "создавайте документ",
+          "ваш профиль с данными",
         urlImage: "img/nurse/docAdd.svg",
       },
       {
         to: "/",
         title: "Создать документ",
+        description: "создавайте документ",
+        urlImage: "img/nurse/docAdd.svg",
+      },
+      {
+        to: "/",
+        title: "Создать подсказку",
         description: "создавайте краткую запись длинного текста",
         urlImage: "img/nurse/doc.svg",
       },
       {
         to: "/",
-        title: "Создать подсказку",
+        title: "Создать шаблон",
         description: "создавайте переиспользуемый шаблон",
         urlImage: "img/nurse/template.svg",
       },
       {
         to: "/",
-        title: "Создать шаблон",
-        description: "просматривайте созданные документы",
+        title: "Созданное",
+        description: "просматривайте всё, что было создано",
         urlImage: "img/nurse/view.svg",
       },
     ];
