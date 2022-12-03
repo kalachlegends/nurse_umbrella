@@ -69,11 +69,12 @@ export default {
       },
 
       {
-        to: "/",
+        to: "/template",
         title: "Создать шаблон",
         description: "Создавайте переиспользуемый шаблон",
         urlImage: "img/nurse/template.svg",
       },
+
       {
         to: "/",
         title: "Созданное",
