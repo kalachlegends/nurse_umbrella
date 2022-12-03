@@ -7,7 +7,7 @@
             <div class="logo-vertical__image img-fluid">
                 <img src="@/assets/img/logo.svg" alt="">
             </div>
-            <span>Novella Designer</span>
+            <span class="black-text">Nurse Documents</span>
         </a>
 
             <form class="login-block__body">
@@ -19,7 +19,7 @@
                     Войти
                 </button>
                 <div class="df-aic-jc-fx-c gap-10">
-                  <router-link to="/register" class="text-align-center "> Нету аккаунта? Зарегистрируйтесь! </router-link>
+                  <router-link to="/register" class="text-align-center black-text"> Нету аккаунта? Зарегистрируйтесь! </router-link>
                
                 </div>
             </form>
@@ -52,7 +52,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #2c2c2c;
+  background-color: #f3f3f3;
 }
 
 .login-block {
