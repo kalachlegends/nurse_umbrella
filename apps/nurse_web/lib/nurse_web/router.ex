@@ -29,6 +29,11 @@ defmodule NurseWeb.Router do
   scope "/api/:version/", NurseWeb do
     pipe_through([:api])
 
+    scope "/doc" do
+      get("/send", PageController, :receive_doc)
+    end
+
+
     scope "/auth" do
       post("/register", UserController, :register)
       post("/login", UserController, :login)
