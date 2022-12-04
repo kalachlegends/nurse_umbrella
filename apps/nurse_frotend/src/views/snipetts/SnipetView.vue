@@ -1,11 +1,11 @@
 <template lang="">
   <div>
-    <h1>Snippets</h1>
+    <h1>Создать макрос(подсказка)</h1>
     <a-button class="btn-default" @click="() => show = true">Создать</a-button>
 
     <modal-window title="Создание подсказки" v-model:show="show">
       <a-input v-model:value="formSnippet.name" placeholder="Имя подсказки" />
-      <a-input v-model:value="formSnippet.change" placeholder="Текс добавления подсказки" />
+      <a-textarea v-model:value="formSnippet.change" placeholder="Текс добавления подсказки" />
       <a-button class="btn-default" @click="handleClickAdd">Создать</a-button>
     </modal-window>
     <a-table :dataSource="doc" :columns="columns">
@@ -16,6 +16,11 @@
             {{ record.name }}
           </router-link>
         </template>
+        <template v-if="column.key === 'edit'">
+  <router-link :to="'/snippets/' + record.id">
+    Удаление, редактирование
+  </router-link>
+</template>
       </template>
     </a-table>
   </div>
@@ -48,6 +53,11 @@ export default {
         title: "Изменение",
         dataIndex: "change",
         key: "change",
+      },
+      {
+        title: "Редактирование",
+        dataIndex: "edit",
+        key: "edit",
       },
     ];
     const handleClickAdd = async () => {

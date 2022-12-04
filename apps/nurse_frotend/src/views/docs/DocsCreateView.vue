@@ -35,9 +35,28 @@ export default {
 };
 </script>
 <style lang="scss" scoped >
+@import "@/assets/scss/colors.scss";
 .grid {
   display: grid;
   grid-template: 1fr/1fr 1fr 1fr;
   gap: 10px;
+}
+.tabs {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  height: 50px;
+  bottom: 30px;
+
+  span {
+    background: $bg-main;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+
+    &.isActive {
+      color: black;
+    }
+  }
 }
 </style>

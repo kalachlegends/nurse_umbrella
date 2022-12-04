@@ -254,7 +254,7 @@ h3 {
   position: fixed;
   width: 100%;
   z-index: 100;
-
+  height: 50px;
   bottom: 30px;
 
   span {

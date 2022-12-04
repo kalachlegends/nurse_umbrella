@@ -38,12 +38,6 @@ export default {
     const user = JSON.parse(localStorage.getItem("user"));
     const routes = [
       {
-        to: "/",
-        title: "Главная",
-        description: "",
-        urlImage: "img/logo.svg",
-      },
-      {
         to: "/profile/" + user.login,
         title: "Профиль",
         description: "создавайте документ",
@@ -63,19 +57,19 @@ export default {
       },
       {
         to: "/template",
-        title: "Создать шаблон",
-        description: "Создавайте переиспользуемый шаблон",
+        title: "Посмотреть все шаблоны",
+        description: "Посмотреть все шаблоны",
         urlImage: "img/nurse/template.svg",
       },
       {
         to: "/template_create",
         title: "Создать шаблон",
         description: "Создавайте переиспользуемый шаблон",
-        urlImage: "img/nurse/template.svg",
+        urlImage: "img/nurse/icons8-prototype-100.png",
       },
       {
         to: "/docs",
-        title: "Созданное",
+        title: "Посмотреть все документы",
         description: "Просматривайте всё, что было создано",
         urlImage: "img/nurse/view.svg",
       },
@@ -83,7 +77,7 @@ export default {
         to: "/chart",
         title: "График",
         description: "Графики",
-        urlImage: "img/nurse/view.svg",
+        urlImage: "img/nurse/free-icon-profit-growth-4672328.png",
       },
     ];
     return {

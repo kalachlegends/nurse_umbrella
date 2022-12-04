@@ -7,57 +7,55 @@
           <router-link :to="'/template/' + record.id">
             {{ record.id }}
           </router-link>
-
-
         </template>
         <template v-if="column.key === 'title'">
-          <router-link :to="'/template/' + record.id">
-            {{ record.name }}
-          </router-link>
-        </template>
+  <router-link :to="'/template/' + record.id">
+    {{ record.name }}
+  </router-link>
+</template>
       </template>
     </a-table>
   </div>
 </template>
 <script>
-  import axios from "@/axios";
-  import { ref, onMounted, computed, inject } from "vue";
-  export default {
-    setup() {
-      const doc = ref([]);
+import axios from "@/axios";
+import { ref, onMounted, computed, inject } from "vue";
+export default {
+  setup() {
+    const doc = ref([]);
 
-      const columns = [
-        {
-          title: "id",
-          dataIndex: "id",
-          key: "id",
-        },
-        {
-          title: "title",
-          dataIndex: "title",
-          key: "title",
-        },
-        {
-          title: "name",
-          dataIndex: "name",
-          key: "name",
-        },
-      ];
+    const columns = [
+      {
+        title: "id",
+        dataIndex: "id",
+        key: "id",
+      },
+      {
+        title: "title",
+        dataIndex: "title",
+        key: "title",
+      },
+      {
+        title: "name",
+        dataIndex: "name",
+        key: "name",
+      },
+    ];
 
-      const isLoad = inject("isLoad");
-      onMounted(async () => {
-        isLoad.value = true;
-        const data = await axios.get("/template");
-        doc.value = data.data.data;
+    const isLoad = inject("isLoad");
+    onMounted(async () => {
+      isLoad.value = true;
+      const data = await axios.get("/template");
+      doc.value = data.data.data;
 
-        isLoad.value = false;
-      });
-      return {
-        columns,
-        doc,
-      };
-    },
-  };
+      isLoad.value = false;
+    });
+    return {
+      columns,
+      doc,
+    };
+  },
+};
 </script>
 <style lang="scss" scoped >
 .grid {
