@@ -111,6 +111,18 @@ defmodule NurseWeb.PageController do
     end
   end
 
+  def all_content(%{assigns: %{user_id: user_id}}, _params) do
+    with {:ok, snippets} <- Nurse.Snippet.get_all(%{user_id: user_id}),
+         list <- Enum.map(snippets, &%{name: &1.name, change: &1.words}) do
+      {:render,
+       %{
+         tab: Nurse.Services.Tab.get_ordered(user_id),
+         snippets: list,
+         report_customer: Nurse.Services.Tag.get_ordered(user_id)
+       }}
+    end
+  end
+
   # def test(conn, params) do
   #   params["token"]
   #   |> IO.inspect(label: "-------------------------->")

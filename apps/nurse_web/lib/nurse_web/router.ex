@@ -29,21 +29,25 @@ defmodule NurseWeb.Router do
   scope "/api/:version/", NurseWeb do
     pipe_through([:api])
 
-    scope "/tab" do
+    scope "/content" do
       pipe_through(:auth)
-      get("/", TabController, :send_tabs)
+      get("/", PageController, :all_content)
+      get("/tab", TabController, :send_tabs)
+      get("/tag", TagController, :send_tag)
+      get("/snippets", PageController, :get_snippets)
+      post("/snippets", PageController, :insert_snippet)
     end
 
-    scope "/snippets" do
-      pipe_through(:auth)
-      get("/", PageController, :get_snippets)
-      post("/", PageController, :insert_snippet)
-    end
+    # scope "/snippets" do
+    #   pipe_through(:auth)
+    #   get("/", PageController, :get_snippets)
+    #   post("/", PageController, :insert_snippet)
+    # end
 
-    scope "/tag" do
-      pipe_through(:auth)
-      get("/", TagController, :send_tag)
-    end
+    # scope "/tag" do
+    #   pipe_through(:auth)
+    #   get("/", TagController, :send_tag)
+    # end
 
     scope "/doc" do
       pipe_through(:auth)
