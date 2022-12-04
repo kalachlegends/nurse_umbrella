@@ -36,6 +36,7 @@ defmodule NurseWeb.Router do
       get("/tag", TagController, :send_tag)
       get("/snippets", PageController, :get_snippets)
       post("/snippets", PageController, :insert_snippet)
+      post("/snippets/update", PageController, :update_snippet)
     end
 
     scope "/doc" do

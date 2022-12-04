@@ -111,6 +111,14 @@ defmodule NurseWeb.PageController do
     end
   end
 
+  def update_snippet(%{assigns: assigns}, %{"id" => id, "name" => name, "change" => change}) do
+    with {:ok, snippet} <- Nurse.Snippet.get(id),
+         {:ok, data} <-
+           Nurse.Snippet.update(snippet, %{user_id: assigns.user_id, name: name, words: change}) do
+      {:render, %{data: data}}
+    end
+  end
+
   def all_content(%{assigns: %{user_id: user_id}}, _params) do
     with {:ok, snippets} <- Nurse.Snippet.get_all(%{user_id: user_id}),
          list <- Enum.map(snippets, &%{name: &1.name, change: &1.words, selected: false}) do
