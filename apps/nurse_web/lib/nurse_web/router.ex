@@ -40,6 +40,11 @@ defmodule NurseWeb.Router do
       post("/", PageController, :insert_snippet)
     end
 
+    scope "/tag" do
+      pipe_through(:auth)
+      get("/", TagController, :send_tabs)
+    end
+
     scope "/doc" do
       pipe_through(:auth)
       post("/", PageController, :receive_doc)
