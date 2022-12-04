@@ -35,6 +35,7 @@ defmodule NurseWeb.Router do
       get("/tab", TabController, :send_tabs)
       get("/tag", TagController, :send_tag)
       get("/snippets", PageController, :get_snippets)
+      get("/popular_tabs", TabController, :popular_tabs)
       post("/snippets", PageController, :insert_snippet)
     end
 

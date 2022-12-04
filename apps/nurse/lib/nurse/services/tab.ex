@@ -35,7 +35,7 @@ defmodule Nurse.Services.Tab do
     Nurse.Repo.all(
       from t in Nurse.Tab,
         where: t.user_id == ^user_id,
-        order_by: t.count,
+        order_by: [desc: t.count],
         select: %{name: t.words, change: t.words, selected: false}
     )
   end
