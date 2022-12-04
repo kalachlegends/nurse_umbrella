@@ -4,7 +4,10 @@
         
             {{obrez(title)}}
         </div>
-       
+        <div v-if="name" class="docs__name">
+          <h3>Имя пациента</h3>
+          {{obrez(name)}}
+      </div>
         <div v-if="anemesis" class="docs__name">
           <h3>Амнезиз</h3>
           {{obrez(anemesis)}}

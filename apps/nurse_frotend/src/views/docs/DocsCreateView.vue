@@ -34,7 +34,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" scoped >
 .grid {
   display: grid;
   grid-template: 1fr/1fr 1fr 1fr;
