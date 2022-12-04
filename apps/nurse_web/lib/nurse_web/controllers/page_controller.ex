@@ -61,10 +61,11 @@ defmodule NurseWeb.PageController do
          %{name: "balls", change: "bowling", selected: false},
          %{name: "bowling", change: "balls", selected: false}
        ],
-       anemesis: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["anemesis"], ""),
+       anemesis:
+         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["anemesis"] || "", ""),
        object_data:
-         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"], ""),
-       exam: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["exam"], "")
+         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"] || "", ""),
+       exam: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["exam"] || "", "")
      }}
   end
 

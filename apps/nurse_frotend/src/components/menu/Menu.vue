@@ -75,7 +75,7 @@ export default {
         urlImage: "img/nurse/template.svg",
       },
       {
-        to: "/template",
+        to: "/template_create",
         title: "Создать шаблон",
         description: "Создавайте переиспользуемый шаблон",
         urlImage: "img/nurse/template.svg",
