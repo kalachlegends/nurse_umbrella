@@ -117,11 +117,11 @@ defmodule NurseWeb.PageController do
          list <- Enum.map(snippets, &%{name: &1.name, change: &1.words, selected: false}) do
       {:render,
        %{
-         content: [
-           Nurse.Services.Tab.get_ordered(user_id),
-           list,
+         content:
+           Nurse.Services.Tab.get_ordered(user_id) +
+           list +
            Nurse.Services.Tag.get_ordered(user_id)
-         ]
+
        }}
     end
   end
