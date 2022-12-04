@@ -4,7 +4,7 @@ defmodule Nurse.Services.Tag do
   def create_tag(doc_id, user_id) do
     {:ok, doc} = Doc.get(%{id: doc_id})
 
-    doc.doc["report_customer"]
+    doc.doc["report_customer"] || ""
     |> IO.inspect(label: "report_customer")
     |> String.downcase()
     |> String.split(",")
