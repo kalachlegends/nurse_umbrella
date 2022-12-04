@@ -1,6 +1,5 @@
 defmodule Nurse.Services.Tag do
   alias Nurse.Doc
-  import Ecto.Query
 
   def create_tag(doc_id, user_id) do
     {:ok, doc} = Doc.get(%{id: doc_id})
@@ -16,6 +15,8 @@ defmodule Nurse.Services.Tag do
       end
     end)
   end
+
+  import Ecto.Query
 
   def get_ordered(user_id) do
     Nurse.Repo.all(
