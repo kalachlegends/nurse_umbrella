@@ -13,7 +13,7 @@
       <p><i>Первичный осмотр</i></p>
     </div>
     <p><h3>Имя пациента</h3>
-      <a-textarea @input="handleChange" @keydown="handleKey(doc.name, $event, 'name')" v-model:value="doc.name" placeholder="Basic usage" :rows="4" />
+      <a-input @input="handleChange" @keydown="handleKey(doc.name, $event, 'name')" v-model:value="doc.name" placeholder="Basic usage" :rows="4" />
     </p>
     <p v-if="doc.report_customer"><h3>Жалобы при поступлении</h3>
       <a-textarea @input="handleChange" @keydown="handleKey(doc.report_customer, $event, 'report_customer')" v-model:value="doc.report_customer" placeholder="Basic usage" :rows="4" />
@@ -45,10 +45,10 @@
       <h3 v-if="!doc.survey" @click="() => doc.survey = ' '">Обследование<img src="@/assets/img/nurse/plus.svg" alt=""></h3>
     <p v-if="doc.plan"><h3>План лечения</h3>  
       <a-textarea  @input="handleChange" v-model:value="doc.plan" @keydown="handleKey(doc.plan, $event, 'plan')"  placeholder="Basic usage" :rows="4" /> </p>
-      <h3 v-if="!doc.plan" @click="() => doc.survey = ' '">План лечения<img src="@/assets/img/nurse/plus.svg" alt=""></h3>
+      <h3 v-if="!doc.plan" @click="() => doc.plan = ' '">План лечения<img src="@/assets/img/nurse/plus.svg" alt=""></h3>
     <p v-if="doc.etc"><h3>Прочее</h3>  
       <a-textarea  @input="handleChange" v-model:value="doc.etc" @keydown="handleKey(doc.etc, $event, 'etc')"  placeholder="Basic usage" :rows="4" /> </p>
-      <h3 v-if="!doc.etc">Прочее <img src="@/assets/img/nurse/plus.svg" alt=""></h3>
+      <h3 v-if="!doc.etc" @click="() => doc.etc = ' '">Прочее <img src="@/assets/img/nurse/plus.svg" alt=""></h3>
      
     <p><b>Врач: </b> 
       {{doc.doctor}}

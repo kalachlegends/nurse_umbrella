@@ -79,6 +79,12 @@ export default {
         description: "Просматривайте всё, что было создано",
         urlImage: "img/nurse/view.svg",
       },
+      {
+        to: "/chart",
+        title: "График",
+        description: "Графики",
+        urlImage: "img/nurse/view.svg",
+      },
     ];
     return {
       routes,

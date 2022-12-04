@@ -112,6 +112,15 @@ const routes = [
     },
   },
   {
+    path: '/chart',
+    name: 'editor',
+    component: () => import('@/views/ChartViev.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+  {
     path: '/register',
     name: 'register',
     component: () => import('@/views/auth/RegisterView.vue'),
