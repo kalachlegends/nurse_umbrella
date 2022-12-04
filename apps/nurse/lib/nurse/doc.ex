@@ -24,7 +24,7 @@ defmodule Nurse.Doc do
   def order_by_inserted_at(user_id) do
     Nurse.Repo.all(
       from doc in Nurse.Doc,
-        where: doc.user_id == ^user_id,
+        where: doc.user_id == ^user_id and doc.is_template == false,
         order_by: [desc: doc.inserted_at],
         select: doc
     )
