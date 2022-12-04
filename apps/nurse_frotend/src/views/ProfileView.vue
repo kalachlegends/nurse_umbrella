@@ -3,7 +3,7 @@
     <div class="profile__img-rounted">
       <img class="profile__img img-fluid" :src="user.data.img" alt="">
     </div>
-    <p class="profile__name">{{user.data.name}}</p>
+    <p class="profile__name">Доктор: {{user.data.name}}</p>
     <div class="profile__text">Ваш логин&nbsp;
       <p class="profile__text-fw">{{user.login}}</p>
     </div>
