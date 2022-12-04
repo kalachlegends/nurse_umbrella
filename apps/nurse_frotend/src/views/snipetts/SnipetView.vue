@@ -21,70 +21,70 @@
   </div>
 </template>
 <script>
-  import axios from "@/axios";
-  import { ref, onMounted, computed, inject } from "vue";
-  import { Toast } from "@/helper/defaultAlert";
-  export default {
-    setup() {
-      const doc = ref([]);
-      const show = ref(false);
-      const isLoader = ref(false);
-      const formSnippet = ref({
-        name: "",
-        change: "",
-      });
-      const columns = [
-        {
-          title: "id",
-          dataIndex: "id",
-          key: "id",
-        },
-        {
-          title: "Имя подсказки",
-          dataIndex: "name",
-          key: "name",
-        },
-        {
-          title: "Изменение",
-          dataIndex: "change",
-          key: "change",
-        },
-      ];
-      const handleClickAdd = async () => {
-        const data = await axios
-          .post("/snippets", formSnippet.value)
-          .then(async () => {
-            Toast.fire({
-              icon: "success",
-              title: "Успешно создали сниппет",
-            });
-            const data = await axios.get("/snippets");
-            doc.value = data.data.snippets;
-          })
-          .catch(() => {
-            Toast.fire({
-              icon: "error",
-              title: "Ошибка",
-            });
+import axios from "@/axios";
+import { ref, onMounted, computed, inject } from "vue";
+import { Toast } from "@/helper/defaultAlert";
+export default {
+  setup() {
+    const doc = ref([]);
+    const show = ref(false);
+    const isLoader = ref(false);
+    const formSnippet = ref({
+      name: "",
+      change: "",
+    });
+    const columns = [
+      {
+        title: "id",
+        dataIndex: "id",
+        key: "id",
+      },
+      {
+        title: "Имя подсказки",
+        dataIndex: "name",
+        key: "name",
+      },
+      {
+        title: "Изменение",
+        dataIndex: "change",
+        key: "change",
+      },
+    ];
+    const handleClickAdd = async () => {
+      const data = await axios
+        .post("/content/snippets", formSnippet.value)
+        .then(async () => {
+          Toast.fire({
+            icon: "success",
+            title: "Успешно создали сниппет",
           });
-      };
-      const isLoad = inject("isLoad");
-      onMounted(async () => {
-        isLoad.value = true;
-        const data = await axios.get("/snippets");
-        doc.value = data.data.snippets;
-        console.log(data);
-        isLoad.value = false;
-      });
-      return {
-        columns,
-        doc,
-        show,
-        formSnippet,
-        handleClickAdd,
-      };
-    },
-  };
+          const data = await axios.get("/content/snippets");
+          doc.value = data.data.snippets;
+        })
+        .catch(() => {
+          Toast.fire({
+            icon: "error",
+            title: "Ошибка",
+          });
+        });
+    };
+    const isLoad = inject("isLoad");
+    onMounted(async () => {
+      isLoad.value = true;
+      const data = await axios.get("/content/snippets");
+      doc.value = data.data.snippets;
+      console.log(data);
+      isLoad.value = false;
+    });
+    return {
+      columns,
+      doc,
+      show,
+      formSnippet,
+      handleClickAdd,
+    };
+  },
+};
 </script>
 <style lang="">
 </style>

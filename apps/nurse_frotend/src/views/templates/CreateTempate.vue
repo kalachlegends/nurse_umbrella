@@ -88,184 +88,184 @@
   </div>
 </template>
 <script>
-  import axios from "@/axios";
-  import { ref, onMounted, computed, inject } from "vue";
-  import { useRouter, useRoute } from "vue-router";
-  import { Toast } from "@/helper/defaultAlert";
-  export default {
-    setup() {
-      const doc = ref({});
-      const user = JSON.parse(localStorage.getItem("user"));
-      const isLoad = inject("isLoad");
-      console.log(user);
-      doc.value.doctor = user.data.name;
+import axios from "@/axios";
+import { ref, onMounted, computed, inject } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { Toast } from "@/helper/defaultAlert";
+export default {
+  setup() {
+    const doc = ref({});
+    const user = JSON.parse(localStorage.getItem("user"));
+    const isLoad = inject("isLoad");
+    console.log(user);
+    doc.value.doctor = user.data.name;
 
-      const textArea = ref("");
-      const tabs = ref([]);
-      const regex = ref("");
-      const lastElement = ref("");
-      const isTab = ref(false);
-      const number = ref(0);
-      const docs = ref({});
-      const isLoader = ref(false);
-      let arrayHints = [];
-      onMounted(async () => {
-        isLoad.value = true;
+    const textArea = ref("");
+    const tabs = ref([]);
+    const regex = ref("");
+    const lastElement = ref("");
+    const isTab = ref(false);
+    const number = ref(0);
+    const docs = ref({});
+    const isLoader = ref(false);
+    let arrayHints = [];
+    onMounted(async () => {
+      isLoad.value = true;
 
-        const data = await axios.get("/tab");
-        console.log(data);
-        docs.value = data.data.data;
+      const data = await axios.get("/content");
+      console.log(data);
+      docs.value = data.data.content;
 
-        isLoad.value = false;
-        arrayHints = docs.value;
-      });
+      isLoad.value = false;
+      arrayHints = docs.value;
+    });
 
-      const find = (el) => el.find((el) => el.selected);
-      const handleChange = (event) => {
-        textArea.value = event.target.value;
+    const find = (el) => el.find((el) => el.selected);
+    const handleChange = (event) => {
+      textArea.value = event.target.value;
 
-        lastElement.value = event.target.value.split(" ").pop();
-        console.log(lastElement.value == "");
-        if (lastElement.value == "") {
-          lastElement.value = "  4125   ";
+      lastElement.value = event.target.value.split(" ").pop();
+      console.log(lastElement.value == "");
+      if (lastElement.value == "") {
+        lastElement.value = "  4125   ";
+      }
+      console.log(tabs.value),
+        (regex.value = new RegExp(`${lastElement.value}`, "gi"));
+      console.log(
+        arrayHints.filter((el) => {
+          lastElement.value == "";
+          return regex.value.test(el.name);
+        })
+      );
+
+      tabs.value = arrayHints.filter((el) => regex.value.test(el.name));
+
+      if (tabs.value.length != 0) {
+        tabs.value.filter((el) => {
+          if (el.selected) el.selected = false;
+        });
+        isTab.value = true;
+        tabs.value[0].selected = true;
+        number.value = 0;
+      } else {
+        isTab.value = false;
+      }
+    };
+    onMounted(() => {
+      window.addEventListener("keydown", (e) => {
+        if (e.keyCode == 40) {
+          if (isTab.value && tabs.value.length - 1 != number.value) {
+            console.log(number.value);
+            tabs.value[number.value].selected = false;
+            number.value = number.value + 1;
+            tabs.value[number.value].selected = true;
+          }
         }
-        console.log(tabs.value),
-          (regex.value = new RegExp(`${lastElement.value}`, "gi"));
-        console.log(
-          arrayHints.filter((el) => {
-            lastElement.value == "";
-            return regex.value.test(el.name);
-          })
-        );
+        if (e.keyCode == 38)
+          if (isTab.value && number.value != 0) {
+            tabs.value[number.value].selected = false;
+            number.value = number.value - 1;
+            tabs.value[number.value].selected = true;
+          }
+      });
+    });
 
-        tabs.value = arrayHints.filter((el) => regex.value.test(el.name));
+    const handleKey = (value, e, key_doc) => {
+      console.log(value, e);
+      console.log(isTab.value, "Istab");
+      if ([37, 38, 39, 40].indexOf(e.keyCode) > -1 && isTab.value) {
+        e.preventDefault();
+      }
+
+      if (e.keyCode == 17) {
+        const array = value.split(" ");
 
         if (tabs.value.length != 0) {
-          tabs.value.filter((el) => {
-            if (el.selected) el.selected = false;
-          });
-          isTab.value = true;
-          tabs.value[0].selected = true;
-          number.value = 0;
-        } else {
-          isTab.value = false;
+          console.log(find(tabs.value), "AADSASD");
+          array.splice(-1, 1, find(tabs.value).change);
         }
-      };
-      onMounted(() => {
-        window.addEventListener("keydown", (e) => {
-          if (e.keyCode == 40) {
-            if (isTab.value && tabs.value.length - 1 != number.value) {
-              console.log(number.value);
-              tabs.value[number.value].selected = false;
-              number.value = number.value + 1;
-              tabs.value[number.value].selected = true;
-            }
-          }
-          if (e.keyCode == 38)
-            if (isTab.value && number.value != 0) {
-              tabs.value[number.value].selected = false;
-              number.value = number.value - 1;
-              tabs.value[number.value].selected = true;
-            }
+        tabs.value = [];
+        doc.value[key_doc] = array.join(" ");
+        number.value = 0;
+      }
+    };
+    const handleClickUpload = async () => {
+      isLoader.value = true;
+      delete doc.value.id;
+      await axios
+        .post("/template", doc.value)
+        .then(() => {
+          Toast.fire({
+            title: "Успешно создали новый  шаблн",
+            icon: "success",
+          });
+        })
+        .catch(() => {
+          Toast.fire({
+            title: "Успешно создали новый документ",
+            icon: "error",
+          });
         });
-      });
-
-      const handleKey = (value, e, key_doc) => {
-        console.log(value, e);
-        console.log(isTab.value, "Istab");
-        if ([37, 38, 39, 40].indexOf(e.keyCode) > -1 && isTab.value) {
-          e.preventDefault();
-        }
-
-        if (e.keyCode == 17) {
-          const array = value.split(" ");
-
-          if (tabs.value.length != 0) {
-            console.log(find(tabs.value), "AADSASD");
-            array.splice(-1, 1, find(tabs.value).change);
-          }
-          tabs.value = [];
-          doc.value[key_doc] = array.join(" ");
-          number.value = 0;
-        }
-      };
-      const handleClickUpload = async () => {
-        isLoader.value = true;
-        delete doc.value.id;
-        await axios
-          .post("/template", doc.value)
-          .then(() => {
-            Toast.fire({
-              title: "Успешно создали новый  шаблн",
-              icon: "success",
-            });
-          })
-          .catch(() => {
-            Toast.fire({
-              title: "Успешно создали новый документ",
-              icon: "error",
-            });
-          });
-        isLoader.value = false;
-      };
-      return {
-        textArea,
-        isLoader,
-        handleChange,
-        tabs,
-        handleKey,
-        doc,
-        handleClickUpload,
-      };
-    },
-  };
+      isLoader.value = false;
+    };
+    return {
+      textArea,
+      isLoader,
+      handleChange,
+      tabs,
+      handleKey,
+      doc,
+      handleClickUpload,
+    };
+  },
+};
 </script>
 <style lang="scss">
-  @import "@/assets/scss/colors.scss";
+@import "@/assets/scss/colors.scss";
 
-  .doc {
-    width: 100%;
-    height: auto;
-    background-color: #fff;
-    border: 1px solid $black;
-    padding: 20px 30px;
-    font-size: 16px;
+.doc {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid $black;
+  padding: 20px 30px;
+  font-size: 16px;
+}
+
+h3 {
+  text-align: center;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+
+  i {
+    font-size: 18px;
   }
+}
 
-  h3 {
-    text-align: center;
-  }
+.btn-default {
+  width: 100%;
+  font-weight: bold;
+}
 
-  .date {
-    display: flex;
-    justify-content: space-between;
+.tabs {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 
-    i {
-      font-size: 18px;
-    }
-  }
+  bottom: 30px;
 
-  .btn-default {
-    width: 100%;
+  span {
+    background: $bg-main;
+    color: white;
+    padding: 10px;
     font-weight: bold;
-  }
 
-  .tabs {
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-
-    bottom: 30px;
-
-    span {
-      background: $bg-main;
-      color: white;
-      padding: 10px;
-      font-weight: bold;
-
-      &.isActive {
-        color: black;
-      }
+    &.isActive {
+      color: black;
     }
   }
+}
 </style>

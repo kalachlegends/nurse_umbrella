@@ -129,8 +129,8 @@ defmodule NurseWeb.PageController do
       {:render,
        %{
          content:
-           Nurse.Services.Tab.get_ordered(user_id) +
-             list +
+           Nurse.Services.Tab.get_ordered(user_id) ++
+             list ++
              Nurse.Services.Tag.get_ordered(user_id)
        }}
     end
