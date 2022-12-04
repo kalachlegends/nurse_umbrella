@@ -13,7 +13,8 @@
   </div>
   <div class="grid">
     <a-template v-if="doc.length != 0" v-for="item in doc" :name="item.name" :title="item.title"
-       :anemesis="item.anemesis" :report_customer="item.report_customer" :exam="item.exam" :id="item.id"></a-template>
+      :anemesis="item.anemesis" :to="'/docs/'" :report_customer="item.report_customer" :exam="item.exam" :id="item.id">
+    </a-template>
     <h3 v-else> Нету Документов</h3>
 
 

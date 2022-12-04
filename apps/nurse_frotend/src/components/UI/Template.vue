@@ -1,5 +1,5 @@
 <template lang="">
-    <router-link :to="'/template/' + id" class="docs">
+    <router-link :to="to + id" class="docs">
         <div v-if="title" class="docs__title">
         
             {{obrez(title)}}
@@ -44,6 +44,9 @@ export default {
     survey: String,
     alergric_anamnes: String,
     etc: String,
+    to: {
+      default: "/template/"
+    }
   },
   methods: {
     obrez(string) {
