@@ -1,84 +1,91 @@
 <template lang="">
-    <router-link :to="to + id" class="docs">
-        <div v-if="title" class="docs__title">
-        
-            {{obrez(title)}}
-        </div>
-        <div v-if="name" class="docs__name">
-          <h3>Имя пациента</h3>
-          {{obrez(name)}}
-      </div>
-        <div v-if="anemesis" class="docs__name">
-          <h3>Амнезиз</h3>
-          {{obrez(anemesis)}}
-      </div>
-      <div v-if="report_customer" class="docs__name">
-        <h3>Жалобы пациента</h3>
-        {{obrez(report_customer)}}
+  <router-link :to="to + id" class="docs">
+    <div v-if="title" class="docs__title">
+
+      {{obrez(title)}}
+    </div>
+    <div v-if="name" class="docs__name">
+      <h3>Имя пациента</h3>
+      {{obrez(name)}}
+    </div>
+    <div v-if="anemesis" class="docs__name">
+      <h3>Амнезиз</h3>
+      {{obrez(anemesis)}}
+    </div>
+    <div v-if="report_customer" class="docs__name">
+      <h3>Жалобы пациента</h3>
+      {{obrez(report_customer)}}
     </div>
     <div v-if="exam" class="docs__name">
       <h3>Жалобы пациента</h3>
       {{obrez(exam)}}
-  </div>
+    </div>
     <div v-if="survey" class="docs__name">
       <h3>По данным последним обследованиям</h3>
-    {{obrez(survey)}}
+      {{obrez(survey)}}
     </div>
     <div v-if="etc" class="docs__name">
       <h3>Прочее</h3>
       {{obrez(etc)}}
-      </div>
-   
-    </router-link >
+    </div>
+
+  </router-link>
 </template>
 <script>
-export default {
-  name: "a-template",
-  props: {
-    id: Number,
-    title: String,
-    name: String,
-    report_customer: String,
-    anemesis: String,
-    exam: String,
-    survey: String,
-    alergric_anamnes: String,
-    etc: String,
-    to: {
-      default: "/template/"
-    }
-  },
-  methods: {
-    obrez(string) {
-      if (string.length > 25) {
-        return string.slice(25, 100) + "...";
+  export default {
+    name: "a-template",
+    props: {
+      id: Number,
+      title: String,
+      name: String,
+      report_customer: String,
+      anemesis: String,
+      exam: String,
+      survey: String,
+      alergric_anamnes: String,
+      etc: String,
+      to: {
+        default: "/template/"
       }
-      return string;
     },
-  },
-};
+    methods: {
+      obrez(string) {
+        if (string.length > 25) {
+          return string.slice(25, 100) + "...";
+        }
+        return string;
+      },
+    },
+    setup(props) {
+      console.log(props)
+    }
+  };
 </script>
 <style lang="scss" scoped>
-@import "@/assets/scss/colors.scss";
-.docs {
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-direction: column;
-  padding: 20px;
-  &:hover {
-    box-shadow: 0px 0px 11px rgba(0, 57, 83, 0.55);
+  @import "@/assets/scss/colors.scss";
+
+  .docs {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+    padding: 20px;
+
+    &:hover {
+      box-shadow: 0px 0px 11px rgba(0, 57, 83, 0.55);
+    }
+
+    box-shadow: $box-shadow-default;
+
+    &__title {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    &__body {}
+
+    &__name {}
   }
-  box-shadow: $box-shadow-default;
-  &__title {
-    font-size: 30px;
-    font-weight: bold;
-  }
-  &__body {
-  }
-  &__name {
-  }
-}
 </style>

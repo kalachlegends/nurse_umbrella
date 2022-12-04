@@ -9,7 +9,7 @@
         :exam="item.exam"
         :id="item.id"
         ></a-template>
-        <h3 v-else > Нету шаблонов</h3>
+        <h3 v-else > Нет созданных шаблонов</h3>
 
 
     </div>
