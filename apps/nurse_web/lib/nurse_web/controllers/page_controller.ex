@@ -92,7 +92,7 @@ defmodule NurseWeb.PageController do
 
   def get_snippets(%{assigns: assigns}, _params) do
     with {:ok, snippets} <- Nurse.Snippet.get_all(%{user_id: assigns.user_id}),
-         list <- Enum.map(snippets, &%{name: &1.name, change: &1.words}) do
+         list <- Enum.map(snippets, &%{name: &1.name, change: &1.words, id: &1.id}) do
       {:render, %{snippets: list}}
     else
       {:error, _} -> {:render, %{snippets: []}}
