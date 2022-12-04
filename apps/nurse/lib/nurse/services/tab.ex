@@ -14,8 +14,9 @@ defmodule Nurse.Services.Tab do
     end)
     |> List.flatten()
     |> Enum.map(fn word ->
-      with {:ok, tab} <- Nurse.Tab.get(%{words: word}) do
-        Nurse.Tab.update(tab, %{count: tab.count + 1})
+      with {:ok, tab} <- Nurse.Tab.get(%{words: word}),
+           {:ok, _struct} <- Nurse.Tab.update(tab, %{count: tab.count + 1}) do
+        :ok
       else
         {:error, _} -> Nurse.Tab.add(%{words: word, count: 1, user_id: user_id})
       end
