@@ -10,7 +10,11 @@ defmodule Nurse.Services.Tab do
 
     [anemesis, exam, etc, object_data]
     |> Enum.map(fn list ->
-      Enum.map(1..(length(list) - 1), &(Enum.at(list, &1 - 1) <> " " <> Enum.at(list, &1)))
+      if length(list) >= 2 do
+        Enum.map(1..(length(list) - 1), &(Enum.at(list, &1 - 1) <> " " <> Enum.at(list, &1)))
+      else
+        []
+      end
     end)
     |> List.flatten()
     |> Enum.map(fn word ->
@@ -24,10 +28,15 @@ defmodule Nurse.Services.Tab do
   end
 
   def regex(str) do
-    Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, str, " ")
-    |> String.replace(~r/\ \ /, " ")
-    |> String.downcase()
-    |> String.split()
+    if !is_nil(str) do
+      Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, str || "", " ")
+      |> IO.inspect(label: "replace")
+      |> String.replace(~r/\ \ /, " ")
+      |> String.downcase()
+      |> String.split()
+    else
+      []
+    end
   end
 
   import Ecto.Query

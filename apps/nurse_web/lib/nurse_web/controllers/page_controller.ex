@@ -55,8 +55,8 @@ defmodule NurseWeb.PageController do
              is_template: is_template,
              doc: Map.drop(params, ["version", "title"])
            }),
-         :ok <- Nurse.Services.Tag.create_tag(doc.id, assigns.user_id),
-         :ok <- Nurse.Services.Tab.create_tab(doc.id, assigns.user_id) do
+         _ <- Nurse.Services.Tag.create_tag(doc.id, assigns.user_id) |> IO.inspect(label: "TAG"),
+         _ <- Nurse.Services.Tab.create_tab(doc.id, assigns.user_id) |> IO.inspect(label: "TAB") do
       {:render,
        %{
          data: [
@@ -133,6 +133,12 @@ defmodule NurseWeb.PageController do
              list ++
              Nurse.Services.Tag.get_ordered(user_id)
        }}
+    else
+      any ->
+        {:render,
+         %{
+           content: []
+         }}
     end
   end
 
