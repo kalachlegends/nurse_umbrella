@@ -12,7 +12,7 @@
 
             <form class="login-block__body">
     
-              <loader v-if="isLoad" :sx="{alignSelf: 'center'}" />
+              <loader v-if="isLoad" theme="dark" :sx="{alignSelf: 'center'}" />
               <input-image v-model="formData.login"  :placeholder="'Логин'" urlImage="img/icons/user.svg" :error="getKeyError(errors.errors, 'login')" />
               <input-image v-model="formData.password" :placeholder="'Пароль'"  urlImage="img/icons/lock-password.svg" :error="getKeyError(errors.errors, 'password')" />
                 <button @click.prevent="handleClickAuth" type="submit" class="btn-grey">

@@ -38,39 +38,50 @@ export default {
     const user = JSON.parse(localStorage.getItem("user"));
     const routes = [
       {
-        to: "/login",
+        to: "/",
         title: "Главная",
-        description:
-          "Сервис по созданию документов",
+        description: "",
         urlImage: "img/logo.svg",
       },
       {
         to: "/profile/" + user.login,
         title: "Профиль",
-        description:
-          "Ваш профиль с данными",
+        description: "создавайте документ",
         urlImage: "img/nurse/profile.svg",
       },
       {
-        to: "/",
+        to: "/docs_create",
         title: "Создать документ",
         description: "Создавайте документ",
         urlImage: "img/nurse/docAdd.svg",
       },
       {
-        to: "/",
+        to: "/snippets",
         title: "Создать подсказку",
         description: "создавайте краткую запись длинного текста",
         urlImage: "img/nurse/doc.svg",
       },
       {
-        to: "/",
+        to: "/docs",
+        title: "Документы",
+        description: "Посмотреть документы",
+        urlImage: "img/nurse/template.svg",
+      },
+
+      {
+        to: "/template",
         title: "Создать шаблон",
         description: "Создавайте переиспользуемый шаблон",
         urlImage: "img/nurse/template.svg",
       },
       {
-        to: "/",
+        to: "/template",
+        title: "Создать шаблон",
+        description: "Создавайте переиспользуемый шаблон",
+        urlImage: "img/nurse/template.svg",
+      },
+      {
+        to: "/docs",
         title: "Созданное",
         description: "Просматривайте всё, что было создано",
         urlImage: "img/nurse/view.svg",

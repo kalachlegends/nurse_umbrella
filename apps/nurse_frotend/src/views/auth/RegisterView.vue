@@ -13,14 +13,14 @@
     
                 <form class="login-block__body">
         
-                  <loader v-if="isLoad" :sx="{alignSelf: 'center'}" />
-                  <input-image v-model="dataForm.email" :placeholder="'Емайл'"  urlImage="img/icons/baseline-email.svg" :error="getKeyError(errors.errors, 'email')" />
+                  <loader v-if="isLoad" theme="dark" :sx="{alignSelf: 'center'}" />
+                  <input-image v-model="dataForm.email" :placeholder="'Email'"  urlImage="img/icons/baseline-email.svg" :error="getKeyError(errors.errors, 'email')" />
+                  <input-image v-model="dataForm.data.name" :placeholder="'Имя Фамилия'"  urlImage="img/icons/user.svg" />
                   <input-image v-model="dataForm.login"  :placeholder="'Логин'" urlImage="img/icons/user.svg" :error="getKeyError(errors.errors, 'login')" />
                   <input-image v-model="dataForm.password" :placeholder="'Пароль'"  urlImage="img/icons/lock-password.svg" :error="getKeyError(errors.errors, 'password')" />
                   <input-image v-model="dataForm.repassword" :placeholder="'Повторите пароль'"  urlImage="img/icons/lock-password.svg" :error="getKeyError(errors.errors, 'repassword')" />
-               
                     <button @click.prevent="handleClickRegister" type="submit" class="btn-grey">
-                        Войти
+                        Зарегистрироваться
                     </button>
                     <div class="df-aic-jc-fx-c gap-10">
                         <router-link to="/login" class="text-align-center width-80 black-text">У вас уже есть аккаунт? Тогда войдите!</router-link>

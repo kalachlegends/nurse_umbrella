@@ -5,6 +5,7 @@ defmodule NurseWeb.UserController do
   action_fallback NurseWeb.FallbackController
 
   def register(conn, params) do
+    
     with {:ok, struct, token} <-
            User.register(
              params["email"],

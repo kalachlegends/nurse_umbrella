@@ -4,7 +4,7 @@
   <div class="dialog__body">
     <div @click.stop class="dialog__content">
       <img  @click.stop="hideDialog" class="exit" src="@/assets/img/icons/x.svg" alt="">
-      <div class="dialog__title" v-if="title">{{title}}</div>
+      <h3 class="dialog__title" v-if="title">{{title}}</h3>
 
           <slot/>
         </div>
@@ -40,7 +40,7 @@ export default {
   opacity: 0;
 }
 .dialog {
-  z-index: 10000000;
+  z-index: 10;
   position: fixed;
   display: block;
   width: 100%;
@@ -52,6 +52,7 @@ export default {
   transition: all 0.4s ease 0s;
 }
 .dialog__title {
+  align-items: center;
 }
 .dialog__body {
   min-height: 100%;

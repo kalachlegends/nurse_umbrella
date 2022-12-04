@@ -29,9 +29,65 @@ const routes = [
     },
   },
   {
+    path: '/docs_create',
+    name: 'docs_create',
+    component: () => import('@/views/docs/DocsCreateView.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: 'AppLayoutMenu'
+    },
+  },
+  {
     path: '/profile/:login',
     name: 'profile',
     component: () => import('@/views/ProfileView.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+  {
+    path: '/docs',
+    name: 'docs',
+    component: () => import('@/views/docs/DocsView.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+  {
+    path: '/docs/:id',
+    name: 'docs_id',
+    component: () => import('@/views/docs/DocsViewId.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+
+  {
+    path: '/template/:id',
+    name: 'template',
+    component: () => import('@/views/templates/TemplateViewId.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+  {
+    path: '/template',
+    name: 'template_id',
+    component: () => import('@/views/templates/TemplateView.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMenu"
+    },
+  },
+
+  {
+    path: '/snippets',
+    name: 'snippets',
+    component: () => import('@/views/snipetts/SnipetView.vue'),
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMenu"
@@ -57,6 +113,10 @@ const routes = [
   {
     name: "404",
     path: '/:pathMatch(.*)*', component: NotFound
+  },
+  {
+    name: "500",
+    path: '/server_error', component: import('@/views/error/ServerError.vue')
   }
 ]
 
