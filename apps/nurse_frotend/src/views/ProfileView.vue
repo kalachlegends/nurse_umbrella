@@ -11,14 +11,15 @@
       <p class="profile__text-fw">{{user.email}}</p>
     </div>
   </div>
+  <h3 class="text-align-center">Ваши последние документы</h3>
   <div class="grid">
-    <a-template v-if="doc.length != 0" v-for="item in doc" :name="item.name" :title="item.title"
-      :anemesis="item.anemesis" :to="'/docs/'" :report_customer="item.report_customer" :exam="item.exam" :id="item.id">
+    <a-template v-if="doc.length != 0" v-for="item in doc" :name="item.doc.name" :title="item.doc.title"
+      :anemesis="item.doc.anemesis" :to="'/docs/'" :report_customer="item.doc.report_customer" :exam="item.doc.exam"
+      :id="item.id">
     </a-template>
-    <h3 v-else> Нету Документов</h3>
-
-
+    <h3 v-else>Последние документы отсутсвуют</h3>
   </div>
+  <br><br><br>
 </template>
 <script>
 
@@ -27,8 +28,6 @@
   export default {
     setup() {
       const { user, doc } = useGetProfile();
-
-
       return {
         user,
         doc,
