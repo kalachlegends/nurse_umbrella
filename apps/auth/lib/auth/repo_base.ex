@@ -58,6 +58,8 @@ defmodule Auth.RepoBase do
         end
       end
 
+
+
       @doc """
       Создает структуру
       """
