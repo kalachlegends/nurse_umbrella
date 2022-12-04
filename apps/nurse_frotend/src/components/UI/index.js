@@ -12,6 +12,7 @@ import ImgFluid from '@/components/UI/ImgFluid'
 import BtnDefault from '@/components/UI/btns/BtnDefault'
 import InputDefault from '@/components/UI/inputs/InputDefault'
 import InputDefImg from '@/components/UI/inputs/InputDefImg'
+import Template from '@/components/UI/Template'
 export default [
-    DropDown, InputEditor, BtnEditor, RightMenu, BtnPlus, InputImage, Loader, LoaderFullPage, ModalWindow, InputFile, ImgFluid, BtnDefault, InputDefault, InputDefImg
+    DropDown, InputEditor, BtnEditor, RightMenu, BtnPlus, InputImage, Loader, LoaderFullPage, ModalWindow, InputFile, ImgFluid, BtnDefault, InputDefault, InputDefImg, Template
 ]

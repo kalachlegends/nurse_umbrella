@@ -29,6 +29,15 @@ const routes = [
     },
   },
   {
+    path: '/docs_create',
+    name: 'docs_create',
+    component: () => import('@/views/docs/DocsCreateView.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: 'AppLayoutMenu'
+    },
+  },
+  {
     path: '/profile/:login',
     name: 'profile',
     component: () => import('@/views/ProfileView.vue'),
@@ -78,7 +87,7 @@ const routes = [
   {
     path: '/snippets',
     name: 'snippets',
-    component: () => import('@/views/templates/TemplateView.vue'),
+    component: () => import('@/views/snipetts/SnipetView.vue'),
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMenu"
