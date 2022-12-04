@@ -36,13 +36,25 @@ defmodule NurseWeb.PageController do
 
   def update_temp(%{assigns: assigns}, %{"id" => id} = params) do
     with {:ok, data} <- Nurse.Doc.get(id: id, user_id: assigns.user_id, is_template: true),
-         {:ok, data} <- Nurse.Doc.update(data, %{title: params["title"], user_id: assigns.user_id, is_template: true, doc: Map.drop(params, ["version", "title", "id"])}) do
-      {:render, %{data: Enum.map(data, &(Map.merge(&1.doc, %{title: &1.title, id: &1.id})))}}
+         {:ok, data} <-
+           Nurse.Doc.update(data, %{
+             title: params["title"],
+             user_id: assigns.user_id,
+             is_template: true,
+             doc: Map.drop(params, ["version", "title", "id"])
+           }) do
+      {:render, %{data: Enum.map(data, &Map.merge(&1.doc, %{title: &1.title, id: &1.id}))}}
     end
   end
 
   def receive_(is_template, params, assigns) do
-    Nurse.Doc.add(%{title: params["title"], user_id: assigns.user_id, is_template: is_template, doc: Map.drop(params, ["version", "title"])})
+    Nurse.Doc.add(%{
+      title: params["title"],
+      user_id: assigns.user_id,
+      is_template: is_template,
+      doc: Map.drop(params, ["version", "title"])
+    })
+
     {:render,
      %{
        data: [
@@ -64,7 +76,7 @@ defmodule NurseWeb.PageController do
 
   def list_(is_template, assigns) do
     with data <- Nurse.Doc.get_all!(user_id: assigns.user_id, is_template: is_template) do
-      {:render, %{data: Enum.map(data, &(Map.merge(&1.doc, %{title: &1.title, id: &1.id})))}}
+      {:render, %{data: Enum.map(data, &Map.merge(&1.doc, %{title: &1.title, id: &1.id}))}}
     end
   end
 
@@ -86,8 +98,26 @@ defmodule NurseWeb.PageController do
   end
 
   def insert_snippet(%{assigns: assigns}, params) do
-    with {:ok, struct} <- Nurse.Snippet.add(%{name: params["name"], words: params["change"], count: 1, user_id: assigns.user_id}) do
+    with {:ok, struct} <-
+           Nurse.Snippet.add(%{
+             name: params["name"],
+             words: params["change"],
+             count: 1,
+             user_id: assigns.user_id
+           }) do
       {:render, %{data: struct}}
+    end
+  end
+
+  def all_content(%{assigns: %{user_id: user_id}}, _params) do
+    with {:ok, snippets} <- Nurse.Snippet.get_all(%{user_id: user_id}),
+         list <- Enum.map(snippets, &%{name: &1.name, change: &1.words}) do
+      {:render,
+       %{
+         tab: Nurse.Services.Tab.get_ordered(user_id),
+         snippets: list,
+         report_customer: Nurse.Services.Tag.get_ordered(user_id)
+       }}
     end
   end
 
