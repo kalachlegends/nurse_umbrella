@@ -37,6 +37,7 @@ defmodule NurseWeb.Router do
       get("/snippets", PageController, :get_snippets)
       get("/popular_tabs", TabController, :popular_tabs)
       post("/snippets", PageController, :insert_snippet)
+      post("/snippets/update", PageController, :update_snippet)
     end
 
     scope "/doc" do
