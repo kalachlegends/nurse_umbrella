@@ -48,12 +48,13 @@ defmodule NurseWeb.PageController do
   end
 
   def receive_(is_template, params, assigns) do
-    Nurse.Doc.add(%{
-      title: params["title"],
-      user_id: assigns.user_id,
-      is_template: is_template,
-      doc: Map.drop(params, ["version", "title"])
-    })
+    {:ok, doc} =
+      Nurse.Doc.add(%{
+        title: params["title"],
+        user_id: assigns.user_id,
+        is_template: is_template,
+        doc: Map.drop(params, ["version", "title"])
+      })
 
     {:render,
      %{
@@ -67,6 +68,9 @@ defmodule NurseWeb.PageController do
          Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"] || "", ""),
        exam: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["exam"] || "", "")
      }}
+
+    Nurse.Services.Tag.create_tag(doc.id, assigns.user_id)
+    Nurse.Services.Tab.create_tab(doc.id, assigns.user_id)
   end
 
   def send_(is_template, assigns, id) do

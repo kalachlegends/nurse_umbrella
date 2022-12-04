@@ -3,7 +3,7 @@
   <div class="tabs d-flex gap-10">
     <span  v-for="tab in tabs" :class="{ isActive: tab.selected }">{{ tab.name }}</span>
   </div>
-  <p><h3>Название документы</h3>
+  <p><h3>Название документа</h3>
     <a-input v-model:value="doc.title" placeholder="Имя документа"  />
   </p>
   <div class="doc">
