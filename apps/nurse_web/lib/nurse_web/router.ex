@@ -38,22 +38,12 @@ defmodule NurseWeb.Router do
       post("/snippets", PageController, :insert_snippet)
     end
 
-    # scope "/snippets" do
-    #   pipe_through(:auth)
-    #   get("/", PageController, :get_snippets)
-    #   post("/", PageController, :insert_snippet)
-    # end
-
-    # scope "/tag" do
-    #   pipe_through(:auth)
-    #   get("/", TagController, :send_tag)
-    # end
-
     scope "/doc" do
       pipe_through(:auth)
       post("/", PageController, :receive_doc)
-      get("/:id", PageController, :send_doc)
       get("/", PageController, :list_doc)
+      get("/last_six_docs", PageController, :last_six_docs)
+      get("/:id", PageController, :send_doc)
     end
 
     scope "/template" do
