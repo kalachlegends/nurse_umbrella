@@ -1,17 +1,17 @@
 <template lang="">
     <h1 style="text-align: center;">Выберите шаблон</h1>
     <div class="grid">
-        <a-template v-if="doc.length != 0" v-for="item in doc" 
+        <a-template v-if="doc.length != 0" v-for="item in doc"
         :title="item.title"
         
-        :anemesis="item.anemesis"   
+        :anemesis="item.anemesis"
         :report_customer="item.report_customer"
         :exam="item.exam"
         :id="item.id"
         ></a-template>
         <h3 v-else > Нету шаблонов</h3>
 
-        
+
     </div>
 </template>
 <script>

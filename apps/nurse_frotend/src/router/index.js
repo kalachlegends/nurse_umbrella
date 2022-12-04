@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/auth/LoginView.vue'
 import NotFound from '@/views/error/NotFound.vue'
 import { Toast } from '@/helper/defaultAlert'
+import user from '@/store/user'
 const routes = [
   {
     path: '/',
@@ -92,7 +93,6 @@ const routes = [
       layout: "AppLayoutMenu"
     },
   },
-
   {
     path: '/snippets',
     name: 'snippets',
