@@ -5,6 +5,7 @@ defmodule Nurse.Services.Tag do
     {:ok, doc} = Doc.get(%{id: doc_id})
 
     doc.doc["report_customer"]
+    |> IO.inspect(label: "report_customer")
     |> String.downcase()
     |> String.split(",")
     |> Enum.map(fn tag ->

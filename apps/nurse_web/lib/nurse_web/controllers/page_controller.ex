@@ -48,29 +48,28 @@ defmodule NurseWeb.PageController do
   end
 
   def receive_(is_template, params, assigns) do
-    {:ok, doc} =
-      Nurse.Doc.add(%{
-        title: params["title"],
-        user_id: assigns.user_id,
-        is_template: is_template,
-        doc: Map.drop(params, ["version", "title"])
-      })
-
-    {:render,
-     %{
-       data: [
-         %{name: "balls", change: "bowling", selected: false},
-         %{name: "bowling", change: "balls", selected: false}
-       ],
-       anemesis:
-         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["anemesis"] || "", ""),
-       object_data:
-         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"] || "", ""),
-       exam: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["exam"] || "", "")
-     }}
-
-    Nurse.Services.Tag.create_tag(doc.id, assigns.user_id)
-    Nurse.Services.Tab.create_tab(doc.id, assigns.user_id)
+    with {:ok, doc} <-
+           Nurse.Doc.add(%{
+             title: params["title"],
+             user_id: assigns.user_id,
+             is_template: is_template,
+             doc: Map.drop(params, ["version", "title"])
+           }),
+         _ <- Nurse.Services.Tag.create_tag(doc.id, assigns.user_id) |> IO.inspect(label: "TAG"),
+         _ <- Nurse.Services.Tab.create_tab(doc.id, assigns.user_id) |> IO.inspect(label: "TAB") do
+      {:render,
+       %{
+         data: [
+           %{name: "balls", change: "bowling", selected: false},
+           %{name: "bowling", change: "balls", selected: false}
+         ],
+         anemesis:
+           Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["anemesis"] || "", ""),
+         object_data:
+           Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"] || "", ""),
+         exam: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["exam"] || "", "")
+       }}
+    end
   end
 
   def send_(is_template, assigns, id) do
@@ -134,6 +133,12 @@ defmodule NurseWeb.PageController do
              list ++
              Nurse.Services.Tag.get_ordered(user_id)
        }}
+    else
+      any ->
+        {:render,
+         %{
+           content: []
+         }}
     end
   end
 
