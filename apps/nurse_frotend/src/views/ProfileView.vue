@@ -11,17 +11,27 @@
       <p class="profile__text-fw">{{user.email}}</p>
     </div>
   </div>
-  <div class="content">
+  <div class="grid">
+    <a-template v-if="doc.length != 0" v-for="item in doc" :name="item.name" :title="item.title"
+      :anemesis="item.anemesis" :to="'/docs/'" :report_customer="item.report_customer" :exam="item.exam" :id="item.id">
+    </a-template>
+    <h3 v-else> Нету Документов</h3>
+
+
   </div>
 </template>
 <script>
+
+  import { ref, onMounted, computed, inject } from "vue";
   import { useGetProfile } from "@/hooks/user/useGetProfile";
   export default {
     setup() {
-      const { user } = useGetProfile();
-      console.log(user);
+      const { user, doc } = useGetProfile();
+
+
       return {
         user,
+        doc,
       };
     },
   };
@@ -32,6 +42,12 @@
   p {
     margin: 0;
     padding: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template: 1fr/1fr 1fr 1fr;
+    gap: 10px;
   }
 
   .profile {
@@ -79,5 +95,42 @@
     margin: 20px 0 0 0;
     width: 100%;
     color: #fff;
+  }
+
+  .docs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $black;
+
+    &__body {
+      font-size: 24px;
+      margin: 0 20px;
+    }
+
+    &__temp {
+      background-color: #fff;
+      border: 1px solid $black;
+      min-width: 225px;
+      min-height: 300px;
+      border-radius: 5px;
+      padding: 20px;
+      position: relative;
+    }
+
+    &__name {}
+
+    &__rep {}
+
+    &__date {
+      font-size: 20px;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    &__title {
+      text-align: center;
+    }
   }
 </style>
