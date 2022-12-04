@@ -59,5 +59,10 @@
     },
   };
 </script>
-<style lang="">
+<style lang="scss" scoped >
+.grid {
+  display: grid;
+  grid-template: 1fr/1fr 1fr 1fr;
+  gap: 10px;
+}
 </style>

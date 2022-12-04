@@ -282,11 +282,11 @@
     }
 }
 
-.black-text{
+.black-text {
     color: #000425;
 }
 
-.tdu{
+.tdu {
     text-decoration: underline;
 }
 
@@ -297,7 +297,7 @@
     width: 100%;
     font-weight: 600;
     @include adaptiv-font(18, 14);
-    background-color: #008F7B;
+    background-color: #008f7b;
     color: #fff;
 }
 
@@ -562,4 +562,9 @@ h5 {
 }
 .aic {
     align-items: center;
+}
+.grid {
+    display: grid;
+    grid-template: 1fr/1fr 1fr 1fr;
+    gap: 10px;
 }

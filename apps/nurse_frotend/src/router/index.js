@@ -39,6 +39,15 @@ const routes = [
     },
   },
   {
+    path: '/template_create',
+    name: 'CreateTempate_create',
+    component: () => import('@/views/templates/CreateTempate.vue'),
+    meta: {
+      requiresAuth: true,
+      layout: 'AppLayoutMenu'
+    },
+  },
+  {
     path: '/profile/:login',
     name: 'profile',
     component: () => import('@/views/ProfileView.vue'),

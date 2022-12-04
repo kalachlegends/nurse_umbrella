@@ -61,10 +61,11 @@ defmodule NurseWeb.PageController do
          %{name: "balls", change: "bowling", selected: false},
          %{name: "bowling", change: "balls", selected: false}
        ],
-       anemesis: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["anemesis"], ""),
+       anemesis:
+         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["anemesis"] || "", ""),
        object_data:
-         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"], ""),
-       exam: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["exam"], "")
+         Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["object_data"] || "", ""),
+       exam: Regex.replace(~r/(\d[^ ]*?[^ ]\ )|([^\wа-я .,]+)/iu, params["exam"] || "", "")
      }}
   end
 
@@ -113,12 +114,14 @@ defmodule NurseWeb.PageController do
 
   def all_content(%{assigns: %{user_id: user_id}}, _params) do
     with {:ok, snippets} <- Nurse.Snippet.get_all(%{user_id: user_id}),
-         list <- Enum.map(snippets, &%{name: &1.name, change: &1.words}) do
+         list <- Enum.map(snippets, &%{name: &1.name, change: &1.words, selected: false}) do
       {:render,
        %{
-         tab: Nurse.Services.Tab.get_ordered(user_id),
-         snippets: list,
-         report_customer: Nurse.Services.Tag.get_ordered(user_id)
+         content: [
+           Nurse.Services.Tab.get_ordered(user_id),
+           list,
+           Nurse.Services.Tag.get_ordered(user_id)
+         ]
        }}
     end
   end
@@ -131,6 +134,7 @@ defmodule NurseWeb.PageController do
         Map.drop(doc, [:__meta__, :__struct__])
       end)
       |> Enum.chunk_every(6)
+
     {:render, %{doc_list: hd(doc_list)}}
   end
 end
