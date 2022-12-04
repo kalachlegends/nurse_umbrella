@@ -81,9 +81,9 @@ export default {
     onMounted(async () => {
       isLoad.value = true;
 
-      const data = await axios.get("/tab");
+      const data = await axios.get("/content");
       console.log(data);
-      docs.value = data.data.data;
+      docs.value = data.data.content;
 
       isLoad.value = false;
       arrayHints = docs.value;
