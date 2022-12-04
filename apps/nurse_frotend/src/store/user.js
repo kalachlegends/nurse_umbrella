@@ -5,7 +5,10 @@ import { useRoute, useRouter } from 'vue-router'
 export default {
     state: {
         user: {
-            login: ""
+            login: "",
+            data: {
+                name: ""
+            }
         }
     },
     getters: {
@@ -25,6 +28,7 @@ export default {
             const route = useRoute()
 
             await axios.get("/user/profile/" + route.params.login).then((res) => {
+                console.log(res.data.user)
                 commit("setUser", res.data.user)
             }).catch((e) => {
                 router.push({
