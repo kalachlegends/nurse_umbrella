@@ -37,7 +37,7 @@ defmodule Nurse.Services.Tab do
       from t in Nurse.Tab,
         where: t.user_id == ^user_id,
         order_by: t.count,
-        select: %{name: t.words, change: t.words, selected: ^false}
+        select: %{name: t.words, change: t.words, selected: false}
     )
   end
 end

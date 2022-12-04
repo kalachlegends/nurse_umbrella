@@ -9,7 +9,7 @@ defmodule Nurse.Services.Tag do
     |> String.downcase()
     |> String.split(",")
     |> Enum.map(fn tag ->
-      with {:ok, tag} <- Nurse.Tag.get(%{name: tag}) do
+      with {:ok, _tag} <- Nurse.Tag.get(%{name: tag}) do
         :ok
       else
         {:error, _} -> Nurse.Tag.add(%{name: tag, user_id: user_id})
@@ -21,7 +21,7 @@ defmodule Nurse.Services.Tag do
     Nurse.Repo.all(
       from t in Nurse.Tag,
         where: t.user_id == ^user_id,
-        select: %{name: t.name, change: t.name, selected: ^false}
+        select: %{name: t.name, change: t.name, selected: false}
     )
   end
 end
