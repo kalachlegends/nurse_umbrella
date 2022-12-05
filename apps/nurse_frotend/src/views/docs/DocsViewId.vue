@@ -22,39 +22,11 @@
 import axios from "@/axios";
 import { ref, onMounted, computed, inject } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import FileDownload from "js-file-download";
-const downloadFile = (blob, fileName) => {
-  const link = document.createElement("a");
-  // create a blobURI pointing to our Blob
-  link.href = URL.createObjectURL(blob);
-  link.download = fileName;
-  // some browser needs the anchor to be in the doc
-  document.body.append(link);
-  link.click();
-  link.remove();
-  // in case the Blob uses a lot of memory
-  setTimeout(() => URL.revokeObjectURL(link.href), 7000);
-};
 
 export default {
   methods: {
     async handleClickPdf() {
-      const element = document.querySelector("#asd");
-      console.log(document.documentElement.innerHTML);
 
-      axios
-        .post("/pdf_download", {
-          doc_html: document.documentElement.innerHTML,
-        })
-        .then((response) => {
-          console.log(response.data);
-          downloadFile(
-            new Blob([Base64.encode(response.data)], {
-              type: "application/pdf",
-            }),
-            "myfile.pdf"
-          );
-        });
     },
   },
   setup() {
