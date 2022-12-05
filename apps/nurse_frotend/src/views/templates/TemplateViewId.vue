@@ -174,7 +174,7 @@ export default {
         .then(() => {
           Toast.fire({
             title: "Успешно создали новый документ",
-            icon: "sucsess",
+            icon: "success",
           });
         })
         .catch(() => {

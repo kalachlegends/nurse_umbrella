@@ -15,7 +15,7 @@ export default {
       labels: response.data.data.map((el) => el.name),
       datasets: [
         {
-          label: "Ваши популярные слова",
+          label: "Вы это слово использовали",
           data: response.data.data.map((el) => el.count),
           backgroundColor: [
             "rgb(255, 99, 132)",
@@ -55,7 +55,7 @@ export default {
           },
           title: {
             display: true,
-            text: "Chart.js Pie Chart",
+            text: "Ваши наиболее использованные слова",
           },
         },
       },
