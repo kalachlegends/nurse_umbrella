@@ -124,14 +124,12 @@ defmodule NurseWeb.PageController do
   end
 
   def all_content(%{assigns: %{user_id: user_id}}, _params) do
-    with {:ok, snippets} <- Nurse.Snippet.get_all(%{user_id: user_id}),
-         list <- Enum.map(snippets, &%{name: &1.name, change: &1.words, selected: false}) do
+    with snippets <- Nurse.Snippet.get_all_user_id(user_id) do
       {:render,
        %{
          content:
            Nurse.Services.Tab.get_ordered(user_id) ++
-             list ++
-             Nurse.Services.Tag.get_ordered(user_id)
+             snippets
        }}
     else
       any ->

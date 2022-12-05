@@ -17,4 +17,12 @@ defmodule Nurse.Snippet do
     |> cast(attrs, [:words, :count, :user_id, :name])
     |> validate_required([:words, :count, :user_id, :name])
   end
+
+  def get_all_user_id(user_id) do
+    Nurse.Repo.all(
+      from t in Nurse.Snippet,
+        where: t.user_id == ^user_id,
+        select: %{name: t.words, change: t.words, selected: false}
+    )
+  end
 end
