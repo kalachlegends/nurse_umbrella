@@ -49,4 +49,14 @@ defmodule Nurse.Services.Tab do
         select: %{name: t.words, change: t.words, selected: false, count: t.count}
     )
   end
+
+  def get_ordered(user_id, :popular) do
+    Nurse.Repo.all(
+      from t in Nurse.Tab,
+        where: t.user_id == ^user_id,
+        order_by: [desc: t.count],
+        limit: 30,
+        select: %{name: t.words, change: t.words, selected: false, count: t.count}
+    )
+  end
 end

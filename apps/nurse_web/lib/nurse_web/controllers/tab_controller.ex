@@ -7,8 +7,8 @@ defmodule NurseWeb.TabController do
   end
 
   def popular_tabs(%{assigns: %{user_id: user_id}}, _params) do
-    popular_tabs = Nurse.Services.Tab.get_ordered(user_id)
-    |> Enum.chunk_every(30)
-    {:render, %{data: hd(popular_tabs), count: Enum.count(hd(popular_tabs))}}
+    popular_tabs = Nurse.Services.Tab.get_ordered(user_id, :popular)
+
+    {:render, %{data: popular_tabs}}
   end
 end

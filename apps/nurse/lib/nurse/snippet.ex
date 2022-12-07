@@ -22,7 +22,7 @@ defmodule Nurse.Snippet do
     Nurse.Repo.all(
       from t in Nurse.Snippet,
         where: t.user_id == ^user_id,
-        select: %{name: t.words, change: t.words, selected: false}
+        select: %{name: t.name, change: t.words, selected: false}
     )
   end
 end
